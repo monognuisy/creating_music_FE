@@ -1,8 +1,9 @@
 "use client";
 import test from "node:test";
-import { doSignUp } from "./userUtil";
+import { doMailCheck, doSignUp } from "./userUtil";
 import React, { useState } from "react";
-
+import { set } from "react-hook-form";
+import { resMailCheck } from "./userUtil";
 interface Props {
   getJoin: boolean;
   chModal: (value: number) => void;
@@ -18,8 +19,10 @@ const JoinPopUp: React.FC<Props> = ({
 }) => {
   const [getUserName, setUserName] = useState("");
   const [getEmail, setEmail] = useState("");
+  const [getCode, setCode] = useState("");
   const [getPw1, setPw1] = useState("");
   const [getPw2, setPw2] = useState("");
+  const [getHidden, setHidden] = useState(false);
   const sign = async () => {
     interface signret {
       msg: string;
@@ -27,7 +30,7 @@ const JoinPopUp: React.FC<Props> = ({
     }
     let ret: signret;
     if (getPw1 == getPw2) {
-      ret = await doSignUp(getUserName, getEmail, getPw1);
+      ret = await doSignUp(getUserName, getEmail, getPw1, getCode);
       if (ret.state == true) {
         msgModal(ret.msg);
         msgModal("");
@@ -35,6 +38,8 @@ const JoinPopUp: React.FC<Props> = ({
         setEmail("");
         setPw1("");
         setPw2("");
+        setCode("");
+        setHidden(false);
         chModal(1);
         setTimeout(() => {
           alert("회원 가입 성공");
@@ -51,22 +56,38 @@ const JoinPopUp: React.FC<Props> = ({
       // setTimeout(()=>{msgModal('');},20000);
     }
   };
-
+  const mailCheck = async () => {
+    if (getEmail === null) {
+      alert("메일을 입력 해주세요");
+    }
+    // test 용 코드 주석제거 필요
+    // let ret: resMailCheck = await doMailCheck(getEmail);
+    let ret = { code: 100, msg: "test" };
+    if (ret.code === 100) {
+      // 전송 성공 했습니다
+      setHidden(true);
+      alert(ret.msg);
+    } else if (ret.code === 200) {
+      // 중복
+      alert(ret.msg);
+    }
+  };
   if (getJoin == false) {
     return null;
   } else {
     return (
       <div>
         {/* 모달 div */}
-        <div className="bg-gray max-w-sm rounded-md bg-u-gray-400 p-8 ">
+        <div className="bg-gray max-w-sm rounded-2xl bg-u-gray-400 p-8 ">
           <h5 className="flex justify-center text-xl font-bold">회원가입</h5>
           <br></br>
           <p className="flex items-center">
             <span className="flex-grow text-gray-200">닉네임</span>
             <span className="text-right text-gray-200 ">
               {/* 좌우 로 가르는데 나중에 비번 같은지 표시하는것도 이걸로 만들어보자*/}
+              {/* 야 이게 css 에 hidden을 사용하며 숨겨지네 ㄷㄷ 지리고요 */}
               <button
-                className=" text-xs   text-gray-200 underline "
+                className="hidden text-xs text-gray-200 underline"
                 onClick={(e) => {}}
               >
                 중복 확인
@@ -85,7 +106,19 @@ const JoinPopUp: React.FC<Props> = ({
           />
           <br />
           <br />
-          <p className="text-gray-200">이메일</p>
+          <p className="flex items-center">
+            <span className="flex-grow text-gray-200">이메일</span>
+            <span className="text-right text-gray-200 ">
+              <button
+                className=" text-xs   text-gray-200 underline "
+                onClick={(e) => {
+                  mailCheck();
+                }}
+              >
+                인증 코드 보내기
+              </button>
+            </span>
+          </p>
           <input
             className="rounded-full border bg-u-gray-500 p-2"
             type="email"
@@ -96,9 +129,29 @@ const JoinPopUp: React.FC<Props> = ({
               setEmail(e.target.value);
             }}
           />
-
+          <br />
+          {/* 인증코드 전송시 표시 */}
+          {getHidden === true ? (
+            <div>
+              <p className="flex items-center">
+                <span className="flex-grow text-gray-200">인증 코드</span>
+              </p>
+              <input
+                className="rounded-full border bg-u-gray-500 p-2"
+                type="passwd"
+                placeholder="Auth Code"
+                name="email"
+                value={getEmail}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <br />
           <p className="text-gray-200">비밀번호</p>
-
           <p>
             <input
               className="rounded-full border bg-u-gray-500 p-2"
@@ -136,9 +189,7 @@ const JoinPopUp: React.FC<Props> = ({
               회원가입
             </button>
           </div>
-          {/* <p> */}
-          <div className="flex justify-center ">
-            {/* <br/> */}
+          <div className="flex justify-center space-x-2">
             <button
               className=" text-xs   text-gray-200 underline"
               onClick={(e) => {
@@ -147,9 +198,6 @@ const JoinPopUp: React.FC<Props> = ({
             >
               로그인하기{" "}
             </button>
-            {/* 여기 */}
-            {"\u00A0"}
-            {"\u00A0"}
             <button
               className=" text-xs text-gray-200 underline"
               onClick={(e) => {
@@ -160,7 +208,6 @@ const JoinPopUp: React.FC<Props> = ({
               아이디/비밀번호 찾기
             </button>
           </div>
-          {/* </p> */}
         </div>
         <div></div>
       </div>

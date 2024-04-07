@@ -4,6 +4,7 @@ import MainModalPopup from "./mainModal";
 import {} from "./cookieUtill";
 import { doLogOut } from "./userUtil";
 import UserProfile from "./UserProfile";
+import Button from "@/app/_components/Button";
 
 interface Props {
   getLoginStatus: boolean;
@@ -50,12 +51,16 @@ const LoginBt: React.FC<Props> = ({
     return (
       <>
         {/* 로그인 */}
-        <button
-          className="mx-2 rounded-full border bg-white px-6 font-bold text-black"
+        <Button
+          className="mx-auto rounded-full border bg-white px-6 font-bold text-black"
+          // className="flex items-center gap-[1rem]"
           onClick={ModalOpen}
+          label="로그인"
+          size="sm"
+          filled
         >
-          Login
-        </button>
+          로그인
+        </Button>
         <MainModalPopup
           getModal={getModal}
           setModal={setModla}
