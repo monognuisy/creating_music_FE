@@ -16,7 +16,8 @@ export default function Menu({
   onChangeSelected,
 }: MenuProps) {
   return (
-    <section className="mx-auto mt-[5rem] w-full max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 pl-[6.25rem] pr-0">
+    // mb mt 상하 패딩 , pl pr 왼오 패딩
+    <section className="mx-auto mb-[1rem] mt-[1rem] w-full max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 pl-[6rem] pr-[6rem]">
       <p className="h-[6.25rem] py-[1.625rem] text-[2.5rem] font-bold  text-white">
         {title}
       </p>

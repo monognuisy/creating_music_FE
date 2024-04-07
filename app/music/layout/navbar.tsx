@@ -4,9 +4,9 @@ import Href from "./_components/href";
 import Login from "./_components/login";
 
 export default function Navbar() {
-   return (
+  return (
     <nav>
-      <div className="flex w-[75rem] h-[3rem] items-center justify-between gap-[1rem] bg-u-gray-400 mx-auto" >
+      <div className="mx-auto flex h-[3rem] w-[75rem] items-center justify-between gap-[1rem] bg-u-gray-400">
         <div className="flex items-center">
           <Image
             alt={`로고`}
@@ -17,9 +17,9 @@ export default function Navbar() {
             height={56}
           />
           <Search />
-          <Href/>
+          <Href />
         </div>
-        <Login/>         
+        <Login />
       </div>
     </nav>
   );

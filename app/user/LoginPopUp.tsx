@@ -49,7 +49,7 @@ const LoginPopUp: React.FC<Props> = ({
     return (
       <div>
         {/* 모달 div */}
-        <div className="bg-gray max-w-sm rounded-md bg-u-gray-400 p-8 ">
+        <div className="bg-gray max-w-sm rounded-2xl bg-u-gray-400 p-8 ">
           <h5 className="flex justify-center text-xl font-bold">로그인</h5>
           <br></br>
           <p className="text-gray-200">이메일</p>
@@ -88,33 +88,39 @@ const LoginPopUp: React.FC<Props> = ({
               로그인
             </button>
           </div>
-          {/* <p> */}
-          <div className="flex justify-center ">
-            {/* <br/> */}
-            <button
-              className=" text-xs   text-gray-200 underline"
-              onClick={(e) => {
-                chModal(2);
-              }}
-            >
-              회원가입{" "}
-            </button>
-            {/* 여기 */}
-            {"\u00A0"}
-            {"\u00A0"}
-            <button
-              className=" text-xs text-gray-200 underline"
-              onClick={(e) => {
-                chModal(3);
-              }}
-            >
-              {" "}
-              아이디/비밀번호 찾기
-            </button>
+          <div className="space-y-3">
+            <div className="flex justify-center space-x-2">
+              <button
+                className=" text-xs   text-gray-200 underline "
+                onClick={(e) => {
+                  chModal(2);
+                }}
+              >
+                회원가입{" "}
+              </button>
+              {"\u00A0"}
+              <button
+                className=" text-xs text-gray-200 underline"
+                onClick={(e) => {
+                  chModal(3);
+                }}
+              >
+                {" "}
+                아이디/비밀번호 찾기
+              </button>
+            </div>
+
+            <hr className=" mb-[0.25rem] h-0 w-full border-[2px] border-[#5A5A5A] " />
+            <div className="flex">
+              <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
+                google
+              </button>
+              <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
+                kakao
+              </button>
+            </div>
           </div>
-          {/* </p> */}
         </div>
-        <div></div>
       </div>
     );
   }

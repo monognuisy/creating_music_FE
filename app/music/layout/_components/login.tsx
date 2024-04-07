@@ -36,7 +36,7 @@ const Login = () => {
   };
   if (vanni == true) {
     return (
-      <div className="flex items-center gap-[1rem]">
+      <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
         <UserProfile
           getLoginStatus={getLoginStatus}
           getProfileIMG={getProfileIMG}
@@ -46,12 +46,11 @@ const Login = () => {
           eLoginStatus={eLoginStatus}
           deleteuserinfo={deleteuserinfo}
         ></LoginBt>
-        <button onClick={users}>aaaaaaa</button>
       </div>
     );
   } else {
     return (
-      <div className="flex items-center gap-[1rem]">
+      <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
         <h1></h1>
         {login ? (
           <Link href="/mypage">
@@ -71,6 +70,12 @@ const Login = () => {
           onClick={login ? onClickLogout : onClickLogin}
           filled
           size="sm"
+          // 애헤이 조젔네 이거 여기 vannicode
+          slotProps={{
+            root: {
+              className: "w-max break-keep text-sm",
+            },
+          }}
         />
       </div>
     );

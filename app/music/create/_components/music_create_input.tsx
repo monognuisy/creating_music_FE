@@ -17,6 +17,9 @@ export default function MusicCreateInput({
   onChangeSelectedGenre,
   onChangeSelectedMood,
 }: MusicCreateInputProps) {
+  const test = () => {
+    alert`1`;
+  };
   return (
     <div className="flex w-full flex-col gap-[0.5rem] pr-[4rem]">
       <p className="text-[2rem] font-semibold text-white">Music Title</p>
@@ -42,9 +45,12 @@ export default function MusicCreateInput({
           onChangeSelected={onChangeSelectedGenre}
         />
       ) : (
-        <p className="h-[2.75rem] text-[1.25rem] text-[#52525B]">
+        <button
+          className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
+          onClick={test}
+        >
           장르를 선택해주세요
-        </p>
+        </button>
       )}
 
       <p className="text-[2rem] font-semibold text-white">Mood</p>
@@ -55,9 +61,12 @@ export default function MusicCreateInput({
           onChangeSelected={onChangeSelectedMood}
         />
       ) : (
-        <p className="h-[2.75rem] text-[1.25rem] text-[#52525B]">
+        <button
+          className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
+          onClick={test}
+        >
           무드를 선택해주세요
-        </p>
+        </button>
       )}
     </div>
   );

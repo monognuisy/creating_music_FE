@@ -5,8 +5,8 @@ import { promises } from "node:dns";
 import { json } from "node:stream/consumers";
 import axios from "../axiosoverwrite/axiosinterceptors";
 // 서버 주소 여기에
-// var serveraddr = "http://192.168.0.4:8080";
-var serveraddr = "http://192.168.0.15:8080";
+// var serveraddr = "http://192.168.0.22:8080";
+var serveraddr = "http://192.168.0.10:8080";
 // }
 //로그인
 export interface resLogin {
@@ -28,6 +28,10 @@ interface resSignUp {
 interface resIdCheck {
   msg: string;
   state: boolean;
+}
+export interface resMailCheck {
+  msg: string;
+  code: number;
 }
 // const doLogin=async (inEmail:string,inPw:string):Promise<resLogin>=>{
 const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
@@ -103,6 +107,7 @@ const doSignUp = async (
   INusername: string,
   INEmail: string,
   INPw1: string,
+  INCode: string,
 ): Promise<resSignUp> => {
   let ret: resSignUp;
 
@@ -111,6 +116,7 @@ const doSignUp = async (
     nickname: INusername,
     email: INEmail,
     password: INPw1,
+    code: INCode,
   };
   try {
     const res = await fetch(addr, {
@@ -132,13 +138,25 @@ const doSignUp = async (
 };
 
 // 메일 인증
-const doMailCheck = async () => {
-  let ret;
-  const addr = serveraddr + "";
-  const res = await fetch(addr, {
-    method: "",
+const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
+  // 이메일이 존재 할수 없는 경우 중복인 경우
+  let ret: resMailCheck = {
+    msg: "",
+    code: 0,
+  };
+  let jsondata = {
+    email: inMail,
+  };
+  let res;
+  const addr = serveraddr + "/api/users/email-check";
+  res = await fetch(addr, {
+    method: "POST",
+    body: JSON.stringify(jsondata),
   });
+  ret = await res.json();
+  return ret;
 };
+
 const doIdCheck = async (inId: string): Promise<resIdCheck> => {
   let ret: resIdCheck;
   ret = {
