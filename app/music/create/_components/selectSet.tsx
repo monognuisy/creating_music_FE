@@ -3,8 +3,6 @@ import Menu from "./menu";
 
 import { ChoiceType } from "../types";
 interface Props {
-  // getJoin: boolean;
-  // chModal: (value: number) => void;
   PopupTitle: string;
   list: ChoiceType[];
   selected: string;
@@ -30,6 +28,7 @@ export const SelectSet: React.FC<Props> = ({
       <>
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          // 실행되지 않음
           onClick={notModal}
         >
           <div className="bg-gray max-w-max flex-col  items-center  rounded-2xl bg-u-gray-400 p-8">

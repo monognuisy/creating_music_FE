@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import MainModalPopup from "./mainModal";
-import {} from "./cookieUtill";
 import { doLogOut } from "./userUtil";
 import UserProfile from "./UserProfile";
 import Button from "@/app/_components/Button";
-
+import { Input } from "@mui/base";
+import MusicCreateInput1 from "../music/create/_components/music_create_input1";
 interface Props {
   getLoginStatus: boolean;
   eLoginStatus: (status: boolean) => void;
@@ -33,6 +33,7 @@ const LoginBt: React.FC<Props> = ({
   const ModalOpen = () => {
     setModla(true);
   };
+  const [title, onChangeTitle] = useState("");
   if (getLoginStatus == true) {
     return (
       <>
@@ -50,6 +51,7 @@ const LoginBt: React.FC<Props> = ({
   } else {
     return (
       <>
+        {/* <MusicCreateInput1 title={title} onChangeTitle={onChangeTitle} /> */}
         {/* 로그인 */}
         <Button
           className="mx-auto rounded-full border bg-white px-6 font-bold text-black"
