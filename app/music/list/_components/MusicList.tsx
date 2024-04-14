@@ -1,5 +1,5 @@
 import MusicBar from "@/app/music/list/_components/MusicBar";
-import { Music } from "../types";
+import type { Music } from "../types";
 
 interface Props {
   musicList: Music[];
@@ -20,7 +20,7 @@ export default function MusicList({ musicList }: Props) {
       </div>
       <ol className="overflow-scroll-gradient flex h-[37.5rem] flex-col overflow-y-scroll overscroll-auto scroll-smooth pb-[3.5rem] scrollbar-hide">
         {musicList.map((music) => (
-          <li key={music.id}>
+          <li key={music.music_id}>
             <MusicBar music={music} />
           </li>
         ))}

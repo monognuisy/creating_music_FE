@@ -63,7 +63,7 @@ const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "http://192.168.0.15:*; http://127.0.0.1",
+          "http://192.168.0.10:*; http://127.0.0.1:*",
       },
       body: JSON.stringify(jsondata),
     });
