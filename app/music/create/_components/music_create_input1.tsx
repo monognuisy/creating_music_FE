@@ -1,11 +1,5 @@
 import { Input } from "@mui/base";
-import Choice from "./choice";
-// import { SelectOption } from "@mui/base";
-import { SelectSet } from "./selectSet";
-import { genreChoices, moodChoices, tempoChoices } from "../data";
-import { ChoiceType } from "../types";
 import React, { useState } from "react";
-import Button from "@/app/_components/Button";
 
 interface MusicCreateInputProps {
   title: string;
@@ -23,9 +17,7 @@ export default function MusicCreateInput({
         required
         autoFocus
         value={title}
-        // value={getti}
         onChange={(e) => onChangeTitle(e.target.value)}
-        // onChange={(e) => setti(e.target.value)}
         placeholder="제목을 입력하세요."
         slotProps={{
           input: {

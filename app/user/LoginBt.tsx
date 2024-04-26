@@ -8,13 +8,16 @@ import { Input } from "@mui/base";
 import MusicCreateInput1 from "../music/create/_components/music_create_input1";
 interface Props {
   getLoginStatus: boolean;
-  eLoginStatus: (status: boolean) => void;
+  // eLoginStatus: (status: boolean) => void;
+  chLogin: () => void;
+  chLogout: () => void;
   deleteuserinfo: () => void;
 }
 
 const LoginBt: React.FC<Props> = ({
   getLoginStatus,
-  eLoginStatus,
+  chLogin,
+  chLogout,
   deleteuserinfo,
 }) => {
   const [getLoginBt, setLoginBt] = useState(false);
@@ -24,7 +27,8 @@ const LoginBt: React.FC<Props> = ({
   };
   const LogOut = () => {
     // 사용자 정보 지우는 핸들러 추가
-    eLoginStatus(false);
+    // eLoginStatus(false);
+    chLogout();
     deleteuserinfo();
     doLogOut();
   };
@@ -33,7 +37,7 @@ const LoginBt: React.FC<Props> = ({
   const ModalOpen = () => {
     setModla(true);
   };
-  const [title, onChangeTitle] = useState("");
+  // const [title, onChangeTitle] = useState("");
   if (getLoginStatus == true) {
     return (
       <>
@@ -66,7 +70,8 @@ const LoginBt: React.FC<Props> = ({
         <MainModalPopup
           getModal={getModal}
           setModal={setModla}
-          setLoginStatus={eLoginStatus}
+          chLogin={chLogin}
+          chLogout={chLogout}
         ></MainModalPopup>
       </>
     );

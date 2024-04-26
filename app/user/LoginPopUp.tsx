@@ -1,4 +1,7 @@
 "use client";
+import GoogleAuthLogin from "./tmpGoogleAuthLogin";
+import GoogleAuthLogin1 from "./GoogleAuthLogin1";
+import KakaoAuthLogin from "./KakaoAuthLogin";
 import { doLogin, resLogin } from "./userUtil";
 import React, { useState } from "react";
 
@@ -7,7 +10,9 @@ interface Props {
   chModal: (value: number) => void;
   closeModal: () => void;
   msgModal: (INmsg: string) => void;
-  setLoginStatus: (status: boolean) => void;
+  chLogin: () => void;
+  chLogout: () => void;
+  // setLoginStatus: (status: boolean) => void;
 }
 
 const LoginPopUp: React.FC<Props> = ({
@@ -15,7 +20,9 @@ const LoginPopUp: React.FC<Props> = ({
   chModal,
   closeModal,
   msgModal,
-  setLoginStatus,
+  chLogin,
+  chLogout,
+  // setLoginStatus,
 }) => {
   const [getEmail, setEmail] = useState("");
   const [getPw, setPw] = useState("");
@@ -28,8 +35,10 @@ const LoginPopUp: React.FC<Props> = ({
       // setTimeout(()=>{closeModal();msgModal('');},2000);
       alert("로그인 성공");
       // 로그인 성공시 로그인버튼 -> 로그 아웃 버튼
-      setLoginStatus(true);
-
+      // setLoginStatus(true);
+      console.log("1입니다");
+      chLogin();
+      console.log("2입니다");
       setTimeout(() => {
         closeModal();
       }, 2000);
@@ -42,7 +51,6 @@ const LoginPopUp: React.FC<Props> = ({
       // setTimeout(()=>{msgModal('');},10000);
     }
   };
-
   if (getLogin == false) {
     return null;
   } else {
@@ -112,12 +120,18 @@ const LoginPopUp: React.FC<Props> = ({
 
             <hr className=" mb-[0.25rem] h-0 w-full border-[2px] border-[#5A5A5A] " />
             <div className="flex">
-              <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
+              {/* <button
+                className="mx-4 rounded-full border bg-white px-4 font-bold text-black"
+                onClick={GoogleLogin}
+              >
                 google
-              </button>
+              </button> */}
+              <GoogleAuthLogin1></GoogleAuthLogin1>
+              <KakaoAuthLogin></KakaoAuthLogin>
               <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
                 kakao
               </button>
+              {/* <button onClick={chLogin}>test</button> */}
             </div>
           </div>
         </div>

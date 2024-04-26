@@ -39,3 +39,8 @@ app/page.tsx
 app/user/tmp
 # app/user/
 *test*
+# 안쓰는 파일 
+app/user/tmpGoogleAuthLogin.tsx
+app/user/tmp_GoogleAuthLogin2.tsx
+app/user/.UserAuthCP.tsx
+app/user/.UserPopUp.tsx

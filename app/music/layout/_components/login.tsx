@@ -5,10 +5,10 @@ import Button from "@/app/_components/Button";
 import ClientIcon from "@/app/_components/icon/ClientIcon";
 import Link from "next/link";
 import { useState } from "react";
-import UserAuthCP from "@/app/user/UserAuthCP";
 import LoginBt from "@/app/user/LoginBt";
 import { users } from "@/app/user/userUtil";
 import UserProfile from "@/app/user/UserProfile";
+import { useLogin } from "@/app/LoginContext";
 const Login = () => {
   var vanni = true;
   // 임시, 민석님이 만드신 로그인 상태 머지 되면 수정할게요 ~
@@ -17,15 +17,14 @@ const Login = () => {
   const onClickLogin = () => setLogin(!login);
   const onClickLogout = () => setLogin(!login);
   // 민석
-  const [getLoginStatus, setLoginStatus] = useState(false);
-  // const [getLoginStatus,setLoginStatus]=useState(true);
+  const { getLoginStatus, chLogin, chLogout } = useLogin();
   const [getProfileIMG, setProfileIMG] = useState(
     "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png",
   );
   const [getName, setName] = useState("");
-  const eLoginStatus = (InStatus: boolean) => {
-    setLoginStatus(InStatus);
-  };
+  // const eLoginStatus = (InStatus: boolean) => {
+  //   setLoginStatus(InStatus);
+  // };
   const deleteuserinfo = () => {
     setProfileIMG("");
     setName("");
@@ -43,7 +42,9 @@ const Login = () => {
         ></UserProfile>
         <LoginBt
           getLoginStatus={getLoginStatus}
-          eLoginStatus={eLoginStatus}
+          // eLoginStatus={eLoginStatus}
+          chLogin={chLogin}
+          chLogout={chLogout}
           deleteuserinfo={deleteuserinfo}
         ></LoginBt>
       </div>

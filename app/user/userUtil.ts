@@ -4,9 +4,12 @@ import { error } from "node:console";
 import { promises } from "node:dns";
 import { json } from "node:stream/consumers";
 import axios from "../axiosoverwrite/axiosinterceptors";
+import { DotenvConfigOptions } from "dotenv";
+import { jwtDecode } from "jwt-decode";
 // 서버 주소 여기에
 // var serveraddr = "http://192.168.0.22:8080";
-var serveraddr = "http://192.168.0.10:8080";
+// var serveraddr = "http://192.168.0.10:8080";
+var serveraddr = "http://localhost:8080";
 // }
 //로그인
 export interface resLogin {
@@ -63,13 +66,67 @@ const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "http://192.168.0.10:*; http://127.0.0.1:*",
+          "http://192.168.0.15:*; http://127.0.0.1; http://localhost:8080",
       },
       body: JSON.stringify(jsondata),
     });
     if (res.status === 200) {
       ret = await res.json();
       if (ret.isSuccess == true) {
+        // 로그인 성공 토큰 ,정보 세션에 저장
+        const Token = ret.result.accessToken;
+        setSession("accessToken", ret.result.accessToken);
+        setSession("email", ret.result.email);
+        setSession("nickname", ret.result.nickname);
+        setSession("profileUrl", ret.result.profileUrl);
+        return ret;
+      } else {
+        // 로그인 실패
+        return ret;
+      }
+    }
+    return ret;
+  } catch (error) {
+    alert("네트워크 연결 상태가 좋지 않습니다 !");
+    return ret;
+  }
+};
+const doGoogleLogin = async (inCode: string | null): Promise<resLogin> => {
+  let ret: resLogin;
+  ret = {
+    isSuccess: false, // 성공 여부 (true/false)
+    code: 0, // 응답 코드
+    message: "fail", // 응답 메세지
+    result: {
+      accessToken: "",
+      email: "",
+      nickname: "",
+      profileUrl: "",
+    },
+  };
+  const addr = serveraddr + "/users/googlelogin";
+  let jsondata = {
+    code: inCode,
+  };
+  try {
+    // // withCredentials: true,
+    // axios.defaults.withCredentials = true;
+    // const res = await axios.post(`${serveraddr}/users/login`, jsondata);
+
+    const res = await fetch(addr, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":
+          "http://192.168.0.15:*; http://127.0.0.1",
+      },
+      body: JSON.stringify(jsondata),
+    });
+    if (res.status === 200) {
+      ret = await res.json();
+      if (ret.isSuccess == true) {
+        // alert`doGoogleLogin`;
         // 로그인 성공 토큰 ,정보 세션에 저장
         const Token = ret.result.accessToken;
         setSession("accessToken", ret.result.accessToken);
@@ -191,7 +248,15 @@ const doLogOut = async () => {
   });
 };
 
-export { doLogin, doFindPass, doSignUp, doMailCheck, doIdCheck, doLogOut };
+export {
+  doLogin,
+  doFindPass,
+  doSignUp,
+  doMailCheck,
+  doIdCheck,
+  doLogOut,
+  doGoogleLogin,
+};
 
 // let ret
 // const addr=""
