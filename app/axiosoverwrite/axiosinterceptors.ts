@@ -3,7 +3,7 @@ import { resolveSoa } from "dns";
 import axios from "axios";
 import { headers } from "next/dist/client/components/headers";
 
-const REFRESH_URL = "http://192.168.0.15:8080";
+const REFRESH_URL = "http://192.168.0.10:8080";
 
 axios.interceptors.request.use((config: any) => {
   if (!config.headers) return config;

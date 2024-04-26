@@ -1,65 +1,23 @@
+"use client";
+
 import Frame from "@/app/_components/Frame";
 import ContentFrame from "./_components/ContentFrame";
 import { Button } from "@mui/base";
 import MusicList from "@/app/music/list/_components/MusicList";
+import { useQuery } from "@tanstack/react-query";
+import axios from "../../axiosoverwrite/axiosinterceptors";
 
 export default function Page() {
-  const musicMock = [
-    {
-      id: 0,
-      rank: 1,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-    {
-      id: 1,
-      rank: 2,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-    {
-      id: 2,
-      rank: 3,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-    {
-      id: 3,
-      rank: 4,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-    {
-      id: 4,
-      rank: 5,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-    {
-      id: 5,
-      rank: 6,
-      thumbnail: "",
-      title: "Music Name Music Name",
-      author: "writer writer",
-      genre: "New Age",
-      time: "02:55",
-    },
-  ];
+  const { data } = useQuery({
+    queryKey: ["library", "my"],
+    queryFn: () =>
+      axios.get("http://192.168.0.10:8080/library/musics", {
+        withCredentials: true,
+      }),
+    select: (res) => res.data.result.musics,
+  });
+
+  const musicList = data ?? [];
 
   return (
     <>
@@ -78,9 +36,9 @@ export default function Page() {
             </Button>
           }
         >
-          <MusicList musicList={musicMock} />
+          <MusicList musicList={musicList} />
         </ContentFrame>
-        <ContentFrame
+        {/* <ContentFrame
           title="인기차트"
           addon={
             <Button
@@ -111,7 +69,7 @@ export default function Page() {
           }
         >
           <MusicList musicList={musicMock} />
-        </ContentFrame>
+        </ContentFrame> */}
       </Frame>
     </>
   );
