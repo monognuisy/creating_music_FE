@@ -1,7 +1,5 @@
 "use client";
 
-import GoogleAuthLogin from "./GoogleAuthLogin";
-
 export default function Home() {
   // 이새끼가 음악 설정 상태인거 같아
   // const [selectedGenre, setSelectedGenre] = useState<string>("");
@@ -14,9 +12,5 @@ export default function Home() {
   // const [getState, setState] = useState<boolean>(false);
   // const onChangeSelectedState = (st: boolean) => setState(st);
 
-  return (
-    <main className="flex-1  bg-black px-[2rem] py-16">
-      <GoogleAuthLogin />
-    </main>
-  );
+  return <main className="flex-1  bg-black px-[2rem] py-16"></main>;
 }

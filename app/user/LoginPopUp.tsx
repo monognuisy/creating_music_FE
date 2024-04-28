@@ -1,5 +1,4 @@
 "use client";
-import GoogleAuthLogin from "./tmpGoogleAuthLogin";
 import GoogleAuthLogin1 from "./GoogleAuthLogin1";
 import KakaoAuthLogin from "./KakaoAuthLogin";
 import { doLogin, resLogin } from "./userUtil";
