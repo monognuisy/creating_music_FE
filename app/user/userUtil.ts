@@ -9,7 +9,9 @@ import { jwtDecode } from "jwt-decode";
 // 서버 주소 여기에
 // var serveraddr = "http://192.168.0.22:8080";
 // var serveraddr = "http://192.168.0.10:8080";
-var serveraddr = "http://localhost:8080";
+// var serveraddr = "http://localhost:8080";
+// const serveraddr = "http://showpang.org:8080";
+const serveraddr = "http://localhost:8080";
 // }
 //로그인
 export interface resLogin {

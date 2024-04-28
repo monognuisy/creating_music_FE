@@ -1,5 +1,4 @@
 // `use client`;
-import { GoogleLogin, GoogleOAuthProvider } from "react-oauth-google";
 import React, { useState, useEffect } from "react";
 import { doGoogleLogin, resLogin } from "../../userUtil";
 import { useLogin } from "@/app/LoginContext";
