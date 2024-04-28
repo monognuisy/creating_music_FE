@@ -23,7 +23,7 @@ export default function Choice({
             onClick={() => onChangeSelected("")}
             className="translate-x-[-0.25rem]"
           >
-            <ClientIcon iconUrl="https://creating-music.s3.ap-northeast-2.amazonaws.com/icons/delete.svg" />
+            <Icon name="delete" />
           </button>
           <p className="text-[1.5rem] font-semibold leading-none text-white">
             {label}

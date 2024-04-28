@@ -11,7 +11,8 @@ import { jwtDecode } from "jwt-decode";
 // var serveraddr = "http://192.168.0.10:8080";
 // var serveraddr = "http://localhost:8080";
 // const serveraddr = "http://showpang.org:8080";
-const serveraddr = "http://localhost:8080";
+// const serveraddr = "http://localhost:8080";
+const serveraddr = process.env.NEXT_PUBLIC_DOMAIN;
 // }
 //로그인
 export interface resLogin {
@@ -26,17 +27,21 @@ interface resUserInfo {
   nickname: string;
   profileUrl: string;
 }
-interface resSignUp {
-  msg: string;
-  state: boolean;
+export interface resSignUp {
+  isSuccess: boolean;
+  message: string;
+  result: string;
+  code: number;
 }
 interface resIdCheck {
   msg: string;
   state: boolean;
 }
 export interface resMailCheck {
-  msg: string;
+  message: string;
   code: number;
+  isSuccess: boolean;
+  result: string;
 }
 // const doLogin=async (inEmail:string,inPw:string):Promise<resLogin>=>{
 const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
@@ -189,8 +194,10 @@ const doSignUp = async (
   } catch (error) {
     console.log(error);
     ret = {
-      msg: "fail",
-      state: false,
+      message: "fail",
+      isSuccess: false,
+      result: "회원가입 실패 네트워크 에러",
+      code: 400,
     };
   }
   return ret;
@@ -200,17 +207,22 @@ const doSignUp = async (
 const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
   // 이메일이 존재 할수 없는 경우 중복인 경우
   let ret: resMailCheck = {
-    msg: "",
+    message: "",
     code: 0,
+    isSuccess: false,
+    result: "요청 실패",
   };
   let jsondata = {
     email: inMail,
   };
   let res;
-  const addr = serveraddr + "/api/users/email-check";
+  const addr = serveraddr + "/users/email-check";
   res = await fetch(addr, {
     method: "POST",
     body: JSON.stringify(jsondata),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   ret = await res.json();
   return ret;

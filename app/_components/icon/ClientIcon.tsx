@@ -9,9 +9,11 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
 }
 
 export default function ClientIcon({ iconUrl, ...props }: Props) {
-  const { data: icon } = useQuery([`icon-${iconUrl}`], () =>
+  const { data: icon, error } = useQuery([`icon-${iconUrl}`], () =>
     fetchIcon(iconUrl),
   );
+
+  if (error) return;
 
   return <span dangerouslySetInnerHTML={{ __html: icon ?? "" }} {...props} />;
 }
