@@ -5,8 +5,8 @@ interface IconProps extends HTMLAttributes<HTMLSpanElement> {
   name: IconName;
 }
 
-const BASE_URL = "https://creating-music.s3.ap-northeast-2.amazonaws.com/icons";
-
+const BASE_URL = process.env.NEXT_PUBLIC_ICON;
+// console.log(pro)
 const iconMatcher = {
   airplay: `${BASE_URL}/airplay.svg`,
   download: `${BASE_URL}/download.svg`,
@@ -23,6 +23,7 @@ const iconMatcher = {
   trash: `${BASE_URL}/trash-2.svg`,
   search: `${BASE_URL}/search.svg`,
   avatar: `${BASE_URL}/avatar.svg`,
+  delete: `${BASE_URL}/delete.svg`,
 };
 
 export type IconName = keyof typeof iconMatcher;

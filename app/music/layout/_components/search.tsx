@@ -20,9 +20,7 @@ const Search = () => {
       onChange={(e) => setSearchText(e.target.value)}
       onKeyUp={onSearch}
       className="mr-[2rem] flex min-w-[0rem] max-w-[35rem] items-center rounded-[1.25rem] bg-u-gray-500 px-[1rem]"
-      startAdornment={
-        <ClientIcon iconUrl="https://creating-music.s3.ap-northeast-2.amazonaws.com/icons/search.svg" />
-      }
+      startAdornment={<Icon name="search" />}
       slotProps={{
         input: {
           className:

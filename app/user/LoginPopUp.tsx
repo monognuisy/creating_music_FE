@@ -32,7 +32,7 @@ const LoginPopUp: React.FC<Props> = ({
       // msgModal(ret.msg);
       // 2 초 정도 알림 보여주고 로그인 msg 닫기
       // setTimeout(()=>{closeModal();msgModal('');},2000);
-      alert("로그인 성공");
+      alert("로그인에 성공했습니다");
       // 로그인 성공시 로그인버튼 -> 로그 아웃 버튼
       // setLoginStatus(true);
       console.log("1입니다");

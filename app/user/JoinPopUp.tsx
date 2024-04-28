@@ -1,9 +1,7 @@
 "use client";
-import test from "node:test";
 import { doMailCheck, doSignUp } from "./userUtil";
 import React, { useState } from "react";
-import { set } from "react-hook-form";
-import { resMailCheck } from "./userUtil";
+import { resMailCheck, resSignUp } from "./userUtil";
 interface Props {
   getJoin: boolean;
   chModal: (value: number) => void;
@@ -24,16 +22,12 @@ const JoinPopUp: React.FC<Props> = ({
   const [getPw2, setPw2] = useState("");
   const [getHidden, setHidden] = useState(false);
   const sign = async () => {
-    interface signret {
-      msg: string;
-      state: boolean;
-    }
-    let ret: signret;
+    let ret: resSignUp;
     if (getPw1 == getPw2) {
       ret = await doSignUp(getUserName, getEmail, getPw1, getCode);
-      if (ret.state == true) {
-        msgModal(ret.msg);
-        msgModal("");
+      if (ret.isSuccess == true) {
+        // msgModal(ret.result);
+        // msgModal("");
         setUserName("");
         setEmail("");
         setPw1("");
@@ -41,11 +35,12 @@ const JoinPopUp: React.FC<Props> = ({
         setCode("");
         setHidden(false);
         chModal(1);
+        alert(ret.result);
         setTimeout(() => {
-          alert("회원 가입 성공");
-        }, 1000);
+          closeModal();
+        }, 2000);
       } else {
-        alert("실패" + ret.msg);
+        alert("실패" + ret.result);
         // msgModal(ret.msg);
         // 10 초 정도 보여주고 msg 만 닫기
         // setTimeout(()=>{msgModal('');},20000);
@@ -61,15 +56,16 @@ const JoinPopUp: React.FC<Props> = ({
       alert("메일을 입력 해주세요");
     }
     // test 용 코드 주석제거 필요
-    // let ret: resMailCheck = await doMailCheck(getEmail);
-    let ret = { code: 100, msg: "test" };
-    if (ret.code === 100) {
+    let ret: resMailCheck = await doMailCheck(getEmail);
+    // alert("메일을 확인 해주세요");
+    // let ret = { code: 100, msg: "test" };
+    if (ret.code === 200) {
       // 전송 성공 했습니다
       setHidden(true);
-      alert(ret.msg);
-    } else if (ret.code === 200) {
+      alert(ret.message);
+    } else if (ret.code === 400) {
       // 중복
-      alert(ret.msg);
+      alert(ret.message);
     }
   };
   if (getJoin == false) {
@@ -122,7 +118,7 @@ const JoinPopUp: React.FC<Props> = ({
           <input
             className="rounded-full border bg-u-gray-500 p-2"
             type="email"
-            placeholder="Email"
+            placeholder="email"
             name="email"
             value={getEmail}
             onChange={(e) => {
@@ -138,12 +134,12 @@ const JoinPopUp: React.FC<Props> = ({
               </p>
               <input
                 className="rounded-full border bg-u-gray-500 p-2"
-                type="passwd"
+                type="password"
                 placeholder="Auth Code"
-                name="email"
-                value={getEmail}
+                name="code"
+                value={getCode}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setCode(e.target.value);
                 }}
               />
             </div>
