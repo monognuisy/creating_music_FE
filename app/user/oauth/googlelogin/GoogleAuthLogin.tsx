@@ -12,6 +12,7 @@ const GoogleAuthLogin = () => {
       alert("로그인 성공");
       // 로그인 성공시 로그인버튼 -> 로그 아웃 버튼
       chLogin();
+      window.location.href = "/";
       // 리다이렉트 시키기
     } else {
       alert("로그인 실패");
