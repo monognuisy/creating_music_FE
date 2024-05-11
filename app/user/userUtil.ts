@@ -73,7 +73,7 @@ const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "http://192.168.0.15:*; http://127.0.0.1; http://localhost:8080",
+          "http://192.168.0.15:*; http://127.0.0.1; http://localhost:8080; https://showpang.org",
       },
       body: JSON.stringify(jsondata),
     });
@@ -126,7 +126,7 @@ const doGoogleLogin = async (inCode: string | null): Promise<resLogin> => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "http://192.168.0.15:*; http://127.0.0.1",
+          "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
       },
       body: JSON.stringify(jsondata),
     });
@@ -187,6 +187,8 @@ const doSignUp = async (
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":
+          "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
       },
       body: JSON.stringify(jsondata),
     });
@@ -222,6 +224,8 @@ const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
     body: JSON.stringify(jsondata),
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin":
+        "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
     },
   });
   ret = await res.json();
