@@ -204,7 +204,7 @@ const doSignUp = async (
   }
   return ret;
 };
-
+// test
 // 메일 인증
 const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
   // 이메일이 존재 할수 없는 경우 중복인 경우
