@@ -17,9 +17,7 @@ export default function Footer() {
         </div>
         <Image
           alt={`흑백 로고`}
-          src={
-            "https://creating-music.s3.ap-northeast-2.amazonaws.com/statics/showpang_logo_grayscale.png"
-          }
+          src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo_grayscale.png`}
           width={200}
           height={56}
         />

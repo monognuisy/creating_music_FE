@@ -10,9 +10,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <Image
             alt={`로고`}
-            src={
-              "https://creating-music.s3.ap-northeast-2.amazonaws.com/statics/showpang_logo.png"
-            }
+            src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
             width={200}
             height={56}
           />
