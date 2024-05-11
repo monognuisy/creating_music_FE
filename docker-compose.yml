@@ -1,0 +1,8 @@
+version: "3"
+services:
+  react:
+    container_name: react
+    image: "showpang/create_music_fe"
+    build: .
+    expose:
+      - 3000
