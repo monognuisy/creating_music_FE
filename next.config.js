@@ -15,6 +15,7 @@ const nextConfig = {
       }, 
     ],
   },
+  output: 'standalone',
 };
 // hostname: "creating-music.s3.ap-northeast-2.amazonaws.com",
 module.exports = nextConfig;
