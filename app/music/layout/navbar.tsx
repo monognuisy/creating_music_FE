@@ -5,20 +5,21 @@ import Login from "./_components/login";
 
 export default function Navbar() {
   return (
-    <nav>
-      <div className="mx-auto flex h-[3rem] w-[75rem] items-center justify-between gap-[1rem] bg-u-gray-400">
-        <div className="flex items-center">
+    <header className="flex h-[56px] w-full bg-u-gray-400">
+      <div className="mx-auto flex h-full w-full max-w-[1200px] items-center justify-between gap-[16px]">
+        <div className="flex">
           <Image
             alt={`로고`}
             src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
             width={200}
             height={56}
+            className="aspect-[25/7] h-full"
           />
           <Search />
-          <Href />
         </div>
+        <Href />
         <Login />
       </div>
-    </nav>
+    </header>
   );
 }

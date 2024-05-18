@@ -10,10 +10,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Hls from "hls.js";
 interface Props {
+  order: number;
   music: Music;
 }
 
-export default function MusicBar({ music }: Props) {
+export default function MusicBar({ music, order }: Props) {
   const musicRef = useRef<HTMLMediaElement>(null);
   const hlsRef = useRef<Hls | null>(null);
 
@@ -43,9 +44,11 @@ export default function MusicBar({ music }: Props) {
   };
 
   return (
-    <div className="bg-ugray-500 flex h-[7.5rem] w-[75rem] px-[1.5rem] py-[1.25rem]">
-      <audio ref={musicRef}></audio>
-      <Button className="h-[5rem] w-[5rem] overflow-hidden rounded-[0.25rem]">
+    <div className="bg-ugray-500 flex h-[120px] w-full px-[1.5rem] py-[1.25rem]">
+      <div className="line-clamp-1 flex h-full w-[80px] items-center justify-center overflow-ellipsis text-[1.25rem] font-medium text-white">
+        {order}
+      </div>
+      <Button className="h-[80px] w-[80px] flex-shrink-0 overflow-hidden rounded-[4px]">
         {music.cover_url ? (
           <Image alt="" src={music.cover_url} fill />
         ) : (
@@ -54,47 +57,46 @@ export default function MusicBar({ music }: Props) {
           </div>
         )}
       </Button>
-      <div className="flex h-[5rem] w-[15rem] flex-col justify-center px-[2rem] text-center">
+      <div className="flex h-full w-[240px] flex-col justify-center text-center">
         <Link href="">
           <h3 className="line-clamp-1 w-full overflow-ellipsis">
             {music.music_name}
           </h3>
         </Link>
-        {/* <Link href="">
+        <Link href="">
           <small className="line-clamp-1 overflow-ellipsis text-u-gray-300">
-            {music.author}
+            {music.owner}
           </small>
-        </Link> */}
+        </Link>
       </div>
-      <div className="line-clamp-1 flex h-[5rem] w-[5rem] items-center justify-center overflow-ellipsis text-u-gray-200">
+      <div className="line-clamp-1 flex h-full w-[80px] items-center justify-center overflow-ellipsis text-u-gray-200">
         <Link href="">{music.genre}</Link>
       </div>
-      <div className="flex h-[5rem] w-[5rem] items-center justify-center">
+      <div className="flex h-full w-[80px] items-center justify-center">
         <Button onClick={handleClickPlay}>
-          {/* <Icon name="play" /> */}
+          <Icon name="play" />
           재생
         </Button>
       </div>
-      {/* <div className="flex h-[5rem] w-[5rem] items-center justify-center text-u-gray-200">
-        {music.time}
-      </div> */}
-      <div className="flex h-[5rem] w-[17.5rem] items-center justify-center text-u-gray-200">
-        <Icon name="equalizer2" />
+      <div className="flex h-full w-[80px] items-center justify-center text-u-gray-200">
+        {parseSecToString(music.length)}
       </div>
-      <div className="flex h-[5rem] w-[13rem] items-center justify-center gap-[2rem] text-u-gray-200">
-        <Button>
-          <Icon name="heart" />
-        </Button>
-        <Button>
-          <Icon name="download" />
-        </Button>
-        <Button>
-          <Icon name="share" />
-        </Button>
-        <Button>
-          <Icon name="airplay" />
-        </Button>
+      <div className="flex h-full w-[280px] items-center justify-center text-u-gray-200">
+        <Icon name="equalizer2" />
       </div>
     </div>
   );
 }
+
+const parseSecToString = (sec: number, format: "mm:ss" = "mm:ss") => {
+  switch (format) {
+    case "mm:ss":
+      const mm = sec / 60 < 10 ? `0${sec / 60}` : `${sec / 60}`;
+      const ss = sec % 60 < 10 ? `0${sec % 60}` : `${sec / 60}`;
+
+      return `${mm}:${ss}`;
+
+    default:
+      throw new Error("unreachable");
+  }
+};

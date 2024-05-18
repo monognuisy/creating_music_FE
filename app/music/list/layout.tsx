@@ -12,9 +12,7 @@ export default function Layout({ children }: Props) {
     {
       id: 0,
       link: MUSIC_LIST_PAGE,
-      imgSrc:
-        // "https://creating-music.s3.ap-northeast-2.amazonaws.com/statics/%E1%84%89%E1%85%AD%E1%84%91%E1%85%A2%E1%86%BC%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5+2.jpg",
-        `${process.env.NEXT_PUBLIC_IMAGE}/%E1%84%89%E1%85%AD%E1%84%91%E1%85%A2%E1%86%BC%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5+2.jpg`,
+      imgSrc: `${process.env.NEXT_PUBLIC_IMAGE}/%E1%84%89%E1%85%AD%E1%84%91%E1%85%A2%E1%86%BC%E1%84%87%E1%85%A2%E1%84%82%E1%85%A5+2.jpg`,
     },
   ];
   return (
