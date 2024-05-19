@@ -1,20 +1,7 @@
-// import axios from "axios";
-import { redirect } from "next/dist/server/api-utils";
-import { error } from "node:console";
-import { promises } from "node:dns";
-import { json } from "node:stream/consumers";
 import axios from "../axiosoverwrite/axiosinterceptors";
-import { DotenvConfigOptions } from "dotenv";
-import { jwtDecode } from "jwt-decode";
-// 서버 주소 여기에
-// var serveraddr = "http://192.168.0.22:8080";
-// var serveraddr = "http://192.168.0.10:8080";
-// var serveraddr = "http://localhost:8080";
-// const serveraddr = "http://showpang.org:8080";
-// const serveraddr = "http://localhost:8080";
+
 const serveraddr = process.env.NEXT_PUBLIC_DOMAIN;
-// }
-//로그인
+
 export interface resLogin {
   isSuccess: boolean; // 성공 여부 (true/false)
   code: number; // 응답 코드
@@ -63,17 +50,11 @@ const doLogin = async (inEmail: string, inPw: string): Promise<resLogin> => {
     password: inPw,
   };
   try {
-    // // withCredentials: true,
-    // axios.defaults.withCredentials = true;
-    // const res = await axios.post(`${serveraddr}/users/login`, jsondata);
-
     const res = await fetch(addr, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin":
-          "http://192.168.0.15:*; http://127.0.0.1; http://localhost:8080; https://showpang.org",
       },
       body: JSON.stringify(jsondata),
     });
@@ -116,25 +97,17 @@ const doGoogleLogin = async (inCode: string | null): Promise<resLogin> => {
     code: inCode,
   };
   try {
-    // // withCredentials: true,
-    // axios.defaults.withCredentials = true;
-    // const res = await axios.post(`${serveraddr}/users/login`, jsondata);
-
     const res = await fetch(addr, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin":
-          "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
       },
       body: JSON.stringify(jsondata),
     });
     if (res.status === 200) {
       ret = await res.json();
       if (ret.isSuccess == true) {
-        // alert`doGoogleLogin`;
-        // 로그인 성공 토큰 ,정보 세션에 저장
         const Token = ret.result.accessToken;
         setSession("accessToken", ret.result.accessToken);
         setSession("email", ret.result.email);

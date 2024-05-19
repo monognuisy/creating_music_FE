@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import MusicCover from "./music_cover";
 import MusicTextInput from "./music_text_input";
 import MusicCreateSelect from "./music_create_select";
@@ -9,24 +9,30 @@ import {
   createMusic,
 } from "@/app/music/create/createUtil";
 import { Button } from "@mui/base";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { Music } from "../../list/types";
 
-interface MusicCreateFormProps {}
+interface MusicCreateFormProps {
+  onSuccessCreate?: (music: Music) => void;
+}
 
-export default function MusicCreateForm({}: MusicCreateFormProps) {
+export default function MusicCreateForm({
+  onSuccessCreate,
+}: MusicCreateFormProps) {
   const [title, setTitle] = useState<string>("");
   const [selectedGenre, setSelectedGenre] = useState<string>("");
   const [selectedMood, setSelectedMood] = useState<string>("");
   const [selectedTempo, setSelectedTempo] = useState<string>("");
-  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationKey: ["create", "music"],
     mutationFn: async (body: CreateMusicRequestBody) => {
       const res = await createMusic(body);
       return res;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["library", "musics"] });
+    onSuccess: (res) => {
+      if (!res) return;
+
+      onSuccessCreate && onSuccessCreate(res.result);
     },
   });
 

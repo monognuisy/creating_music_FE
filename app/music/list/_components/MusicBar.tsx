@@ -7,8 +7,8 @@ import { Button } from "@mui/base";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Hls from "hls.js";
+import axios from "@/app/axiosoverwrite/axiosinterceptors";
 interface Props {
   order: number;
   music: Music;

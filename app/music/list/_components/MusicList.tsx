@@ -1,5 +1,8 @@
+"use client";
+
 import MusicBar from "@/app/music/list/_components/MusicBar";
 import type { Music } from "../types";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   musicList: Music[];
