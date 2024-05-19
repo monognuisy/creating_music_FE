@@ -22,7 +22,7 @@ export default function MusicBar({ music, order }: Props) {
     queryKey: ["musics", music.music_id, "streaming"],
     queryFn: () =>
       axios.get(
-        `${process.env.NEXT_APP_PUBLIC_DOMAIN}/musics/${music.music_id}/streaming`,
+        `${process.env.NEXT_PUBLIC_DOMAIN}/musics/${music.music_id}/streaming`,
         {
           withCredentials: true,
         },
