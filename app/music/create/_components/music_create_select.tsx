@@ -1,11 +1,7 @@
-import { Input } from "@mui/base";
 import Choice from "./choice";
-// import { SelectOption } from "@mui/base";
 import { SelectSet } from "./selectSet";
 import { genreChoices, moodChoices, tempoChoices } from "../data";
-import { ChoiceType } from "../types";
 import React, { useState } from "react";
-import Button from "@/app/_components/Button";
 
 interface MusicCreateSelectProps {
   selectedGenre: string;
@@ -28,6 +24,7 @@ export default function MusicCreateSelect({
   onChangeSelectedState,
 }: MusicCreateSelectProps) {
   const [getOption, setOption] = useState("");
+
   const onChangeOption = (inOption: string) => setOption(inOption);
   const onPupupGenre = () => {
     onChangeOption("Genre");
@@ -50,6 +47,7 @@ export default function MusicCreateSelect({
   const deleteTempo = () => {
     onChangeSelectedTempo("");
   };
+
   return (
     <div>
       <p className="text-[2rem] font-semibold text-white">Genre</p>

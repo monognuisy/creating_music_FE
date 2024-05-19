@@ -1,10 +1,11 @@
+"use client";
+
 import { MouseEventHandler, useEffect, useState } from "react";
 import MusicCover from "./music_cover";
 import MusicCreateInput from "./music_create_input";
-import MusicCreateInput1 from "./music_create_input1";
 import MusicCreateSelect from "./music_create_select";
-import Button from "@/app/_components/Button";
 import { createMusic } from "@/app/music/create/createUtil";
+import { Button } from "@mui/base";
 
 interface MusicCreateFormProps {}
 
@@ -20,6 +21,7 @@ export default function MusicCreateForm({}: MusicCreateFormProps) {
   const onChangeSelectedMood = (mood: string) => setSelectedMood(mood);
   const onChangeSelectedTempo = (tempo: string) => setSelectedTempo(tempo);
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
+
   useEffect(() => {
     if (title !== "" && selectedGenre !== "" && selectedMood !== "")
       setButtonEnabled(true);
@@ -34,14 +36,15 @@ export default function MusicCreateForm({}: MusicCreateFormProps) {
       selectedTempo,
     );
   };
+
   return (
     <form name="music-create">
-      <section className="mx-auto w-[75rem] max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 p-[7.5rem] pb-[5rem]">
+      <section className="mx-auto w-full max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 p-[7.5rem] pb-[5rem]">
         <div className="flex flex-row gap-[5.5rem]">
           <MusicCover />
           {/* 여기가 음악 장르 부분인거 같아 */}
           <div className="flex flex-col">
-            <MusicCreateInput1 title={title} onChangeTitle={onChangeTitle} />
+            <MusicCreateInput title={title} onChangeTitle={onChangeTitle} />
             <MusicCreateSelect
               selectedGenre={selectedGenre}
               selectedMood={selectedMood}
@@ -58,18 +61,16 @@ export default function MusicCreateForm({}: MusicCreateFormProps) {
           <Button
             type="submit"
             disabled={!buttonEnabled}
-            label={"공개하기"}
-            filled={false}
-            size="md"
-          />
-          <Button
-            type="submit"
-            disabled={!buttonEnabled}
-            label={"저장하기"}
             onClick={onSubmit}
-            filled={false}
-            size="md"
-          />
+            slotProps={{
+              root: {
+                className:
+                  "bg-[#52525b] rounded-[20px] font-medium text-[1.5rem] h-[40px] px-[24px] disabled:text-[#27272a]",
+              },
+            }}
+          >
+            생성하기
+          </Button>
         </div>
       </section>
     </form>

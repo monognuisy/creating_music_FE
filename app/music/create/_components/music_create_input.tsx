@@ -1,25 +1,14 @@
 import { Input } from "@mui/base";
-import Choice from "./choice";
+import React, { useState } from "react";
 
 interface MusicCreateInputProps {
   title: string;
-  selectedGenre: string;
-  selectedMood: string;
   onChangeTitle: (title: string) => void;
-  onChangeSelectedGenre: (label: string) => void;
-  onChangeSelectedMood: (label: string) => void;
 }
 export default function MusicCreateInput({
   title,
-  selectedGenre,
-  selectedMood,
   onChangeTitle,
-  onChangeSelectedGenre,
-  onChangeSelectedMood,
 }: MusicCreateInputProps) {
-  const test = () => {
-    alert`1`;
-  };
   return (
     <div className="flex w-full flex-col gap-[0.5rem] pr-[4rem]">
       <p className="text-[2rem] font-semibold text-white">Music Title</p>
@@ -37,37 +26,6 @@ export default function MusicCreateInput({
           },
         }}
       />
-      <p className="text-[2rem] font-semibold text-white">Genre</p>
-      {selectedGenre !== "" ? (
-        <Choice
-          label={selectedGenre}
-          selected={selectedGenre}
-          onChangeSelected={onChangeSelectedGenre}
-        />
-      ) : (
-        <button
-          className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
-          onClick={test}
-        >
-          장르를 선택해주세요
-        </button>
-      )}
-
-      <p className="text-[2rem] font-semibold text-white">Mood</p>
-      {selectedMood !== "" ? (
-        <Choice
-          label={selectedMood}
-          selected={selectedMood}
-          onChangeSelected={onChangeSelectedMood}
-        />
-      ) : (
-        <button
-          className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
-          onClick={test}
-        >
-          무드를 선택해주세요
-        </button>
-      )}
     </div>
   );
 }
