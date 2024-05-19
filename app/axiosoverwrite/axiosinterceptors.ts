@@ -1,9 +1,5 @@
-import { resLogin } from "../user/userUtil";
-import { resolveSoa } from "dns";
 import axios from "axios";
-import { headers } from "next/dist/client/components/headers";
-// const serveraddr = "http://localhost:8080";
-// const REFRESH_URL = "http://localhost:8080";
+
 const REFRESH_URL = process.env.NEXT_PUBLIC_DOMAIN;
 axios.interceptors.request.use((config: any) => {
   if (!config.headers) return config;
@@ -62,7 +58,6 @@ axios.interceptors.response.use(
 
     // if (config.url === REFRESH_URL || status == 401 || config.sent) {
     if (status !== 401 || config.sent) {
-      alert(1);
       return Promise.reject(err);
     }
 

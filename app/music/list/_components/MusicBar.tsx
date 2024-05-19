@@ -21,9 +21,12 @@ export default function MusicBar({ music, order }: Props) {
   const { data: musicSrc } = useQuery({
     queryKey: ["musics", music.music_id, "streaming"],
     queryFn: () =>
-      axios.get(`http://192.168.0.10:8080/musics/${music.music_id}/streaming`, {
-        withCredentials: true,
-      }),
+      axios.get(
+        `${process.env.NEXT_APP_PUBLIC_DOMAIN}/musics/${music.music_id}/streaming`,
+        {
+          withCredentials: true,
+        },
+      ),
     select: (res) => res.data.result.index_file_url,
   });
 
