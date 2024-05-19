@@ -66,11 +66,6 @@ export default function MusicBar({ music, order }: Props) {
             {music.music_name}
           </h3>
         </Link>
-        <Link href="">
-          <small className="line-clamp-1 overflow-ellipsis text-u-gray-300">
-            {music.owner}
-          </small>
-        </Link>
       </div>
       <div className="line-clamp-1 flex h-full w-[80px] items-center justify-center overflow-ellipsis text-u-gray-200">
         <Link href="">{music.genre}</Link>

@@ -2,65 +2,77 @@
 
 import { MouseEventHandler, useEffect, useState } from "react";
 import MusicCover from "./music_cover";
-import MusicCreateInput from "./music_create_input";
+import MusicTextInput from "./music_text_input";
 import MusicCreateSelect from "./music_create_select";
-import { createMusic } from "@/app/music/create/createUtil";
+import {
+  CreateMusicRequestBody,
+  createMusic,
+} from "@/app/music/create/createUtil";
 import { Button } from "@mui/base";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface MusicCreateFormProps {}
 
 export default function MusicCreateForm({}: MusicCreateFormProps) {
   const [title, setTitle] = useState<string>("");
-  const onChangeTitle = (title: string) => setTitle(title);
-  const [getState, setState] = useState<boolean>(false);
-  const onChangeSelectedState = (st: boolean) => setState(st);
   const [selectedGenre, setSelectedGenre] = useState<string>("");
   const [selectedMood, setSelectedMood] = useState<string>("");
   const [selectedTempo, setSelectedTempo] = useState<string>("");
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationKey: ["create", "music"],
+    mutationFn: async (body: CreateMusicRequestBody) => {
+      const res = await createMusic(body);
+      return res;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["library", "musics"] });
+    },
+  });
+
+  const onChangeTitle = (title: string) => setTitle(title);
   const onChangeSelectedGenre = (genre: string) => setSelectedGenre(genre);
   const onChangeSelectedMood = (mood: string) => setSelectedMood(mood);
   const onChangeSelectedTempo = (tempo: string) => setSelectedTempo(tempo);
-  const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (title !== "" && selectedGenre !== "" && selectedMood !== "")
-      setButtonEnabled(true);
-    else setButtonEnabled(false);
-  }, [title, selectedGenre, selectedMood]);
   const onSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    let ret = await createMusic(
-      title,
-      selectedGenre,
-      selectedMood,
-      selectedTempo,
-    );
+    mutate({
+      name: title,
+      genre: selectedGenre,
+      mood: selectedMood,
+      tempo: selectedTempo,
+    });
   };
+
+  const submitButtonEnabled = [
+    title,
+    selectedGenre,
+    selectedMood,
+    selectedTempo,
+  ].every((v) => !!v);
 
   return (
     <form name="music-create">
       <section className="mx-auto w-full max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 p-[7.5rem] pb-[5rem]">
         <div className="flex flex-row gap-[5.5rem]">
           <MusicCover />
-          {/* 여기가 음악 장르 부분인거 같아 */}
           <div className="flex flex-col">
-            <MusicCreateInput title={title} onChangeTitle={onChangeTitle} />
+            <MusicTextInput value={title} onChange={onChangeTitle} />
             <MusicCreateSelect
               selectedGenre={selectedGenre}
               selectedMood={selectedMood}
               selectedTempo={selectedTempo}
-              getState={getState}
               onChangeSelectedGenre={onChangeSelectedGenre}
               onChangeSelectedMood={onChangeSelectedMood}
               onChangeSelectedTempo={onChangeSelectedTempo}
-              onChangeSelectedState={onChangeSelectedState}
             />
           </div>
         </div>
         <div className="mt-[3.75rem] flex justify-end gap-[1rem]">
           <Button
             type="submit"
-            disabled={!buttonEnabled}
+            disabled={!submitButtonEnabled}
             onClick={onSubmit}
             slotProps={{
               root: {

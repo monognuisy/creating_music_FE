@@ -33,17 +33,24 @@ interface resCreateMusic {
   result: musicInfo;
 }
 
-const createMusic = async (
-  inTitle: string,
-  inGenre: string,
-  inMood: string,
-  inTempo: string,
-) => {
+export interface CreateMusicRequestBody {
+  name: string;
+  genre: string;
+  mood: string;
+  tempo: string;
+}
+
+const createMusic = async ({
+  name,
+  genre,
+  mood,
+  tempo,
+}: CreateMusicRequestBody) => {
   let reqdata = {
-    music_name: inTitle, // 음악 이름
-    genre: inGenre, // 장르
-    mood: inMood, // 무드
-    tempo: inTempo,
+    music_name: name,
+    genre,
+    mood,
+    tempo,
   };
   let ret;
   //   var addurl = "/musics/generate";
