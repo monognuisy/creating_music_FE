@@ -8,9 +8,9 @@ interface Props extends FrameProps {
 
 export default function ContentFrame({ title, addon, children }: Props) {
   return (
-    <Frame className="w-[75rem] pt-[1rem]">
-      <header className="flex h-[5rem] items-center justify-between px-[3rem]">
-        <h2 className="text-[2rem] font-semibold leading-[1.25] text-white">
+    <Frame className="w-[1200px] pt-[16px]">
+      <header className="flex h-[80px] items-center justify-between">
+        <h2 className="ml-[104px] text-[2rem] font-semibold leading-[1.25] text-white">
           {title}
         </h2>
         {addon}
