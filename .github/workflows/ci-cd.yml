@@ -27,7 +27,7 @@ jobs:
       # docker build & push to develop
       - name: Docker build & push to dev
         run: |
-          docker compose build react
+          docker compose build --no-cache react
           docker compose push react
 
       # ec2 접속 후 pull, start
