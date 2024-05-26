@@ -1,5 +1,7 @@
 "use client";
 
+import KakaoAuthLogin from "./KakaoAuthLogin";
+
 export default function Home() {
   // const [selectedGenre, setSelectedGenre] = useState<string>("");
   // const [selectedMood, setSelectedMood] = useState<string>("");
@@ -11,5 +13,9 @@ export default function Home() {
   // const [getState, setState] = useState<boolean>(false);
   // const onChangeSelectedState = (st: boolean) => setState(st);
 
-  return <main className="flex-1  bg-black px-[2rem] py-16"></main>;
+  return (
+    <main className="flex-1  bg-black px-[2rem] py-16">
+      <KakaoAuthLogin />
+    </main>
+  );
 }
