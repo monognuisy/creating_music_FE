@@ -6,8 +6,8 @@
 // import { env } from "node:process";
 // import { doGoogleLogin } from "./userUtil";
 import React, { useState, useEffect } from "react";
-const REST_API_KEY = "";
-const REDIRECT_URI = "";
+const REST_API_KEY = "656cda00fe6f12998b76836a2f511ca5";
+const REDIRECT_URI = "https://showpang.org/user/oauth/kakaologin";
 const KakaoAuthLogin = () => {
   // popup { 열릴때 WindowProxy , 닫칠때 null } 반환
   const [getPopup, setPopup] = useState<WindowProxy | null>();
