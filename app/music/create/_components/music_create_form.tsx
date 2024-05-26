@@ -10,7 +10,7 @@ import {
 } from "@/app/music/create/createUtil";
 import { Button } from "@mui/base";
 import { useMutation } from "@tanstack/react-query";
-import { Music } from "../../list/types";
+import { Music } from "../../../library/types";
 
 interface MusicCreateFormProps {
   onSuccessCreate?: (music: Music) => void;

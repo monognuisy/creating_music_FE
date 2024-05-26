@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import MusicCreateForm from "./music/create/_components/music_create_form";
-import ContentFrame from "./music/list/_components/ContentFrame";
-import MusicList from "./music/list/_components/MusicList";
-import { Music } from "./music/list/types";
+import ContentFrame from "./library/_components/ContentFrame";
+import MusicList from "./library/_components/MusicList";
+import { Music } from "./library/types";
 
 export default function Home() {
   const [musicList, setMusicList] = useState<Music[]>([]);

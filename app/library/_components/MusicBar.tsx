@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { Music } from "@/app/music/list/types";
+import type { Music } from "@/app/library/types";
 import Icon from "@/app/_components/Icon";
 import { Button } from "@mui/base";
 import Link from "next/link";
@@ -22,12 +22,9 @@ export default function MusicBar({ music, order }: Props) {
   const { data: musicSrc } = useQuery({
     queryKey: ["musics", music.music_id, "streaming"],
     queryFn: () =>
-      axios.get(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/musics/${music.music_id}/streaming`,
-        {
-          withCredentials: true,
-        },
-      ),
+      axios.get(`/musics/${music.music_id}/streaming`, {
+        withCredentials: true,
+      }),
     select: (res) => res.data.result.index_file_url,
   });
 

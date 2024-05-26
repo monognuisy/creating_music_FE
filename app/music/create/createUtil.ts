@@ -1,5 +1,5 @@
 import axios from "@/app/axiosoverwrite/axiosinterceptors";
-import { Music } from "../list/types";
+import { Music } from "../../library/types";
 import { AxiosError } from "axios";
 
 interface resCreateMusic {
@@ -29,13 +29,7 @@ export const createMusic = async ({
     tempo,
   };
   try {
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_DOMAIN}/musics/generate`,
-      reqdata,
-      {
-        withCredentials: true,
-      },
-    );
+    const res = await axios.post(`/musics/generate`, reqdata);
 
     const ret: resCreateMusic = res.data;
 
