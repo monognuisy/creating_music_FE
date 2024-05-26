@@ -20,7 +20,7 @@ export default function Page() {
     <>
       <Frame className="mx-auto flex w-full flex-col gap-[3rem] py-[3rem]">
         <ContentFrame
-          title="인기차트"
+          title="내가 만든 음악"
           addon={
             <Button
               slotProps={{
