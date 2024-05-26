@@ -6,6 +6,7 @@ const KakaoAuthLogin = () => {
   //   const [getCode, setCode] = useState<string | null>("");
   const { getLoginStatus, chLogin } = useLogin();
   const sendCode = async (inaccessCode: string | null) => {
+    console.log("kakao");
     let ret: resLogin = await doKakaoLogin(inaccessCode);
 
     if (ret.isSuccess == true) {
@@ -23,7 +24,7 @@ const KakaoAuthLogin = () => {
     var url = window.location.search;
     const parsedUrl = new URLSearchParams(url);
     const accessCode = parsedUrl.get("code");
-    // console.log(accessCode);
+    console.log(accessCode);
     sendCode(accessCode);
   }, []);
   return (
