@@ -13,7 +13,7 @@ const KakaoAuthLogin = () => {
   const [getPopup, setPopup] = useState<WindowProxy | null>();
   const handleLogin = () => {
     // 구글 로그인 화면으로 이동시키기
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&&scope=account_email`;
   };
   return (
     <>
