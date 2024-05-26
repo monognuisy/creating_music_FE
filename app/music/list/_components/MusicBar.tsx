@@ -5,7 +5,7 @@ import type { Music } from "@/app/music/list/types";
 import Icon from "@/app/_components/Icon";
 import { Button } from "@mui/base";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Hls from "hls.js";
 import axios from "@/app/axiosoverwrite/axiosinterceptors";
@@ -17,6 +17,7 @@ interface Props {
 export default function MusicBar({ music, order }: Props) {
   const musicRef = useRef<HTMLMediaElement>(null);
   const hlsRef = useRef<Hls | null>(null);
+  const [playing, setPlaying] = useState(false);
 
   const { data: musicSrc } = useQuery({
     queryKey: ["musics", music.music_id, "streaming"],
@@ -42,8 +43,13 @@ export default function MusicBar({ music, order }: Props) {
   const handleClickPlay = () => {
     if (!musicRef.current || !hlsRef.current) return;
     hlsRef.current.startLoad();
-    if (musicRef.current.paused) musicRef.current.play();
-    else musicRef.current.pause();
+    if (musicRef.current.paused) {
+      musicRef.current.play();
+      setPlaying(true);
+    } else {
+      musicRef.current.pause();
+      setPlaying(false);
+    }
   };
 
   return (
@@ -72,8 +78,7 @@ export default function MusicBar({ music, order }: Props) {
       </div>
       <div className="flex h-full w-[80px] items-center justify-center">
         <Button onClick={handleClickPlay}>
-          <Icon name="play" />
-          재생
+          {playing ? <Icon name="pause" /> : <Icon name="play" />}
         </Button>
       </div>
       <div className="flex h-full w-[80px] items-center justify-center text-u-gray-200">
@@ -89,8 +94,9 @@ export default function MusicBar({ music, order }: Props) {
 const parseSecToString = (sec: number, format: "mm:ss" = "mm:ss") => {
   switch (format) {
     case "mm:ss":
-      const mm = sec / 60 < 10 ? `0${sec / 60}` : `${sec / 60}`;
-      const ss = sec % 60 < 10 ? `0${sec % 60}` : `${sec / 60}`;
+      const mm =
+        sec / 60 < 10 ? `0${Math.floor(sec / 60)}` : `${Math.floor(sec / 60)}`;
+      const ss = sec % 60 < 10 ? `0${sec % 60}` : `${sec % 60}`;
 
       return `${mm}:${ss}`;
 
