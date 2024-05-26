@@ -1,12 +1,12 @@
 // `use client`;
 import React, { useState, useEffect } from "react";
-import { doGoogleLogin, resLogin } from "../../userUtil";
+import { doKakaoLogin, resLogin } from "../../userUtil";
 import { useLogin } from "@/app/LoginContext";
 const KakaoAuthLogin = () => {
   //   const [getCode, setCode] = useState<string | null>("");
   const { getLoginStatus, chLogin } = useLogin();
   const sendCode = async (inaccessCode: string | null) => {
-    let ret: resLogin = await doGoogleLogin(inaccessCode);
+    let ret: resLogin = await doKakaoLogin(inaccessCode);
 
     if (ret.isSuccess == true) {
       alert("로그인 성공");

@@ -1,7 +1,6 @@
 "use client";
 
 export default function Home() {
-  // 이새끼가 음악 설정 상태인거 같아
   // const [selectedGenre, setSelectedGenre] = useState<string>("");
   // const [selectedMood, setSelectedMood] = useState<string>("");
   // const [selectedTempo, setSelectedTempo] = useState<string>("");
