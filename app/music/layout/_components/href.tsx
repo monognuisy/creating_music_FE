@@ -22,7 +22,7 @@ const Href = () => {
         AI 음악 만들기
       </Link>
       <Link
-        href={"/music/list"}
+        href={"/library"}
         className={`
         inline-flex h-[56px] items-center justify-center text-nowrap px-[20px] font-medium
             ${

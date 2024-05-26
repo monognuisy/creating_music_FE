@@ -54,7 +54,7 @@ export default function MusicBar({ music, order }: Props) {
       <div className="line-clamp-1 flex h-full w-[80px] items-center justify-center overflow-ellipsis text-[1.25rem] font-medium text-white">
         {order}
       </div>
-      <Button className="h-[80px] w-[80px] flex-shrink-0 overflow-hidden rounded-[4px]">
+      <Button className="relative h-[80px] w-[80px] flex-shrink-0 overflow-hidden rounded-[4px]">
         {music.cover_url ? (
           <Image alt="" src={music.cover_url} fill />
         ) : (
