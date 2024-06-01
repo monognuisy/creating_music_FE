@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function MusicBar({ music, order }: Props) {
-  const musicRef = useRef<HTMLMediaElement>(null);
+  const musicRef = useRef<HTMLMediaElement | null>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -74,9 +74,8 @@ export default function MusicBar({ music, order }: Props) {
         <Link href="">{music.genre}</Link>
       </div>
       <div className="flex h-full w-[80px] items-center justify-center">
-        <Button onClick={handleClickPlay}>
-          {playing ? <Icon name="pause" /> : <Icon name="play" />}
-        </Button>
+        <audio ref={musicRef} className="hidden" />
+        <Button onClick={handleClickPlay}>{playing ? "중지" : "재생"}</Button>
       </div>
       <div className="flex h-full w-[80px] items-center justify-center text-u-gray-200">
         {parseSecToString(music.length)}
