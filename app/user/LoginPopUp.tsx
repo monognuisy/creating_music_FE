@@ -127,9 +127,9 @@ const LoginPopUp: React.FC<Props> = ({
               </button> */}
               <GoogleAuthLogin1></GoogleAuthLogin1>
               <KakaoAuthLogin></KakaoAuthLogin>
-              <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
+              {/* <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
                 kakao
-              </button>
+              </button> */}
               {/* <button onClick={chLogin}>test</button> */}
             </div>
           </div>

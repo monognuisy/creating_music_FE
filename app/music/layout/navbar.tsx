@@ -13,6 +13,10 @@ export default function Navbar() {
             src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
             width={200}
             height={56}
+
+            onClick={() => {
+              location.href = "/";
+            }}
             className="aspect-[25/7] h-full"
           />
           <Search />
