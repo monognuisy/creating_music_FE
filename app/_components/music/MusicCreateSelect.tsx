@@ -1,6 +1,10 @@
-import Choice from "./choice";
-import { SelectSet } from "./selectSet";
-import { genreChoices, moodChoices, tempoChoices } from "../data";
+import Choice from "./Choice";
+import { SelectSet } from "./SelectSet";
+import {
+  genreChoices,
+  moodChoices,
+  tempoChoices,
+} from "../../music/create/data";
 import React, { useState } from "react";
 
 interface MusicCreateSelectProps {

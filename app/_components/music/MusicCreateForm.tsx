@@ -1,16 +1,16 @@
 "use client";
 
 import { MouseEventHandler, useState } from "react";
-import MusicCover from "./music_cover";
-import MusicTextInput from "./music_text_input";
-import MusicCreateSelect from "./music_create_select";
+import MusicCover from "./MusicCover";
+import MusicTextInput from "./MusicTextInput";
+import MusicCreateSelect from "./MusicCreateSelect";
 import {
   CreateMusicRequestBody,
   createMusic,
 } from "@/app/music/create/createUtil";
 import { Button } from "@mui/base";
 import { useMutation } from "@tanstack/react-query";
-import { Music } from "../../../library/types";
+import { Music } from "../../library/types";
 
 interface MusicCreateFormProps {
   onSuccessCreate?: (music: Music) => void;

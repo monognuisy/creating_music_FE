@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Hls from "hls.js";
-import axios from "@/app/axiosoverwrite/axiosinterceptors";
+import axios from "@/app/_api/axiosinterceptors";
 interface Props {
   order: number;
   music: Music;
