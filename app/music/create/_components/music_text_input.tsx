@@ -1,14 +1,13 @@
 import { Input } from "@mui/base";
-import React, { useState } from "react";
 
-interface MusicCreateInputProps {
-  title: string;
-  onChangeTitle: (title: string) => void;
+interface MusicTextInputProps {
+  value: string;
+  onChange: (value: string) => void;
 }
-export default function MusicCreateInput({
-  title,
-  onChangeTitle,
-}: MusicCreateInputProps) {
+export default function MusicTextInput({
+  value,
+  onChange,
+}: MusicTextInputProps) {
   return (
     <div className="flex w-full flex-col gap-[0.5rem] pr-[4rem]">
       <p className="text-[2rem] font-semibold text-white">Music Title</p>
@@ -16,8 +15,8 @@ export default function MusicCreateInput({
         type="text"
         required
         autoFocus
-        value={title}
-        onChange={(e) => onChangeTitle(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         placeholder="제목을 입력하세요."
         slotProps={{
           input: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Menu from "./menu";
 import { ChoiceType } from "../types";
 
@@ -7,7 +7,7 @@ interface Props {
   list: ChoiceType[];
   selected: string;
   onChangeSelected: (label: string) => void;
-  getState: boolean;
+  selectState: boolean;
   onChangeSelectedState: (st: boolean) => void;
 }
 export const SelectSet: React.FC<Props> = ({
@@ -15,7 +15,7 @@ export const SelectSet: React.FC<Props> = ({
   list,
   selected,
   onChangeSelected,
-  getState,
+  selectState,
   onChangeSelectedState,
 }) => {
   const notModal = (e: React.MouseEvent) => {
@@ -23,7 +23,7 @@ export const SelectSet: React.FC<Props> = ({
       onChangeSelectedState(false);
     }
   };
-  if (getState === true) {
+  if (selectState === true) {
     return (
       <>
         <div

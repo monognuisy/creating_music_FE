@@ -1,7 +1,6 @@
 "use client";
 
 import Icon from "../../../_components/Icon";
-import ClientIcon from "@/app/_components/icon/ClientIcon";
 
 interface ChoiceProps {
   label: string;

@@ -1,11 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import MainModalPopup from "./mainModal";
 import { doLogOut } from "./userUtil";
-import UserProfile from "./UserProfile";
-import Button from "@/app/_components/Button";
-import { Input } from "@mui/base";
-import MusicCreateInput1 from "../music/create/_components/music_create_input1";
+import { Button } from "@mui/base";
 interface Props {
   getLoginStatus: boolean;
   // eLoginStatus: (status: boolean) => void;
@@ -37,7 +35,6 @@ const LoginBt: React.FC<Props> = ({
   const ModalOpen = () => {
     setModla(true);
   };
-  // const [title, onChangeTitle] = useState("");
   if (getLoginStatus == true) {
     return (
       <>
@@ -48,22 +45,21 @@ const LoginBt: React.FC<Props> = ({
           className="mx-2 rounded-full border bg-white px-6 font-bold text-black"
           onClick={LogOut}
         >
-          Logout
+          로그아웃
         </button>
       </>
     );
   } else {
     return (
       <>
-        {/* <MusicCreateInput1 title={title} onChangeTitle={onChangeTitle} /> */}
-        {/* 로그인 */}
         <Button
-          className="mx-auto rounded-full border bg-white px-6 font-bold text-black"
-          // className="flex items-center gap-[1rem]"
+          slotProps={{
+            root: {
+              className:
+                "mx-auto rounded-full border bg-white px-6 font-bold text-black",
+            },
+          }}
           onClick={ModalOpen}
-          label="로그인"
-          size="sm"
-          filled
         >
           로그인
         </Button>
@@ -72,7 +68,7 @@ const LoginBt: React.FC<Props> = ({
           setModal={setModla}
           chLogin={chLogin}
           chLogout={chLogout}
-        ></MainModalPopup>
+        />
       </>
     );
   }

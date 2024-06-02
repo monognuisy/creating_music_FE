@@ -1,11 +1,12 @@
-import { resLogin } from "../user/userUtil";
-import { resolveSoa } from "dns";
 import axios from "axios";
-import { headers } from "next/dist/client/components/headers";
-// const serveraddr = "http://localhost:8080";
-// const REFRESH_URL = "http://localhost:8080";
+
+const axiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_DOMAIN,
+  withCredentials: true,
+});
+
 const REFRESH_URL = process.env.NEXT_PUBLIC_DOMAIN;
-axios.interceptors.request.use((config: any) => {
+axiosInstance.interceptors.request.use((config: any) => {
   if (!config.headers) return config;
   let token: string | null = null;
   // 리프레쉬 요청이 아니라면 token을 헤더에 넣기
@@ -21,19 +22,12 @@ axios.interceptors.request.use((config: any) => {
 const getAccessToken = async (): Promise<string | void> => {
   try {
     // refresh token 을 같이 요청 하기 access 는 헤더에 존재
-    var addr = "/users/reissue";
-    // axios.defaults.withCredentials = true;
+    const addr = "/users/reissue";
     const {
       data: { resLogin },
-    } = await axios(REFRESH_URL + addr, {
+    } = await axiosInstance(addr, {
       method: "POST",
       withCredentials: true,
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   "Access-Control-Allow-Origin":
-      //     "http://192.168.0.15:8080; http://127.0.0.1",
-      //   // withCredentials: true,
-      // },
     });
 
     if (resLogin.result.accessToken !== null) {
@@ -44,15 +38,12 @@ const getAccessToken = async (): Promise<string | void> => {
     }
     return "a";
   } catch (error) {
-    // localStorage.removeItem("accessToken");
-    // config.headers.Authorization = "";
-    // 서버에서 지우기때문에
     localStorage.removeItem("accessToken");
     return;
   }
 };
 
-axios.interceptors.response.use(
+axiosInstance.interceptors.response.use(
   (res) => res,
   async (err) => {
     const {
@@ -60,9 +51,7 @@ axios.interceptors.response.use(
       response: { status },
     } = err;
 
-    // if (config.url === REFRESH_URL || status == 401 || config.sent) {
     if (status !== 401 || config.sent) {
-      alert(1);
       return Promise.reject(err);
     }
 
@@ -74,7 +63,7 @@ axios.interceptors.response.use(
       return Promise.reject(err);
     }
     // config.headers.
-    return axios(config);
+    return axiosInstance(config);
   },
 );
-export default axios;
+export default axiosInstance;

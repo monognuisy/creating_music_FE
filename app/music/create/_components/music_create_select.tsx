@@ -1,55 +1,58 @@
-import { Input } from "@mui/base";
 import Choice from "./choice";
-// import { SelectOption } from "@mui/base";
 import { SelectSet } from "./selectSet";
 import { genreChoices, moodChoices, tempoChoices } from "../data";
-import { ChoiceType } from "../types";
 import React, { useState } from "react";
-import Button from "@/app/_components/Button";
 
 interface MusicCreateSelectProps {
   selectedGenre: string;
   selectedMood: string;
   selectedTempo: string;
-  getState: boolean;
   onChangeSelectedGenre: (label: string) => void;
   onChangeSelectedMood: (label: string) => void;
   onChangeSelectedTempo: (label: string) => void;
-  onChangeSelectedState: (st: boolean) => void;
 }
 export default function MusicCreateSelect({
   selectedGenre,
   selectedMood,
   selectedTempo,
-  getState,
   onChangeSelectedGenre,
   onChangeSelectedMood,
   onChangeSelectedTempo,
-  onChangeSelectedState,
 }: MusicCreateSelectProps) {
   const [getOption, setOption] = useState("");
+  const [selectState, setSelectState] = useState(false);
+
   const onChangeOption = (inOption: string) => setOption(inOption);
-  const onPupupGenre = () => {
+
+  const onPopupGenre = () => {
     onChangeOption("Genre");
-    onChangeSelectedState(true);
+    handleChangeSelectedState(true);
   };
-  const onPupupMood = () => {
+
+  const onPopupMood = () => {
     onChangeOption("Mood");
-    onChangeSelectedState(true);
+    handleChangeSelectedState(true);
   };
-  const onPupupTempo = () => {
+
+  const onPopupTempo = () => {
     onChangeOption("Tempo");
-    onChangeSelectedState(true);
+    handleChangeSelectedState(true);
   };
+
   const deleteGenre = () => {
     onChangeSelectedGenre("");
   };
+
   const deleteMood = () => {
     onChangeSelectedMood("");
   };
+
   const deleteTempo = () => {
     onChangeSelectedTempo("");
   };
+
+  const handleChangeSelectedState = (st: boolean) => setSelectState(st);
+
   return (
     <div>
       <p className="text-[2rem] font-semibold text-white">Genre</p>
@@ -65,7 +68,7 @@ export default function MusicCreateSelect({
         <button
           type="button"
           className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
-          onClick={onPupupGenre}
+          onClick={onPopupGenre}
         >
           장르를 선택해주세요
         </button>
@@ -85,7 +88,7 @@ export default function MusicCreateSelect({
           <button
             type="button"
             className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
-            onClick={onPupupMood}
+            onClick={onPopupMood}
           >
             무드를 선택해주세요
           </button>
@@ -105,40 +108,40 @@ export default function MusicCreateSelect({
           <button
             type="button"
             className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
-            onClick={onPupupTempo}
+            onClick={onPopupTempo}
           >
             템포를 선택해주세요
           </button>
         </>
       )}
-      {getState === true && getOption === "Genre" ? (
+      {selectState === true && getOption === "Genre" ? (
         <SelectSet
           PopupTitle={getOption}
           list={genreChoices}
           selected={selectedGenre}
           onChangeSelected={onChangeSelectedGenre}
-          getState={getState}
-          onChangeSelectedState={onChangeSelectedState}
+          selectState={selectState}
+          onChangeSelectedState={handleChangeSelectedState}
         ></SelectSet>
       ) : null}
-      {getState === true && getOption === "Mood" ? (
+      {selectState === true && getOption === "Mood" ? (
         <SelectSet
           PopupTitle={getOption}
           list={moodChoices}
           selected={selectedMood}
           onChangeSelected={onChangeSelectedMood}
-          getState={getState}
-          onChangeSelectedState={onChangeSelectedState}
+          selectState={selectState}
+          onChangeSelectedState={handleChangeSelectedState}
         ></SelectSet>
       ) : null}
-      {getState === true && getOption === "Tempo" ? (
+      {selectState === true && getOption === "Tempo" ? (
         <SelectSet
           PopupTitle={getOption}
           list={tempoChoices}
           selected={selectedTempo}
           onChangeSelected={onChangeSelectedTempo}
-          getState={getState}
-          onChangeSelectedState={onChangeSelectedState}
+          selectState={selectState}
+          onChangeSelectedState={handleChangeSelectedState}
         ></SelectSet>
       ) : null}
     </div>
