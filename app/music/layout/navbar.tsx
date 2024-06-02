@@ -13,6 +13,9 @@ export default function Navbar() {
             src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
             width={200}
             height={56}
+            onClick={() => {
+              location.href = "/";
+            }}
           />
           <Search />
           <Href />

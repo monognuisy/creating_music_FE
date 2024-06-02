@@ -12,7 +12,8 @@ export default function Footer() {
             COPYRIGHT © 2024 CreateMusic. All rights reserved.
           </p>
           <p className="text-[1.25rem] text-u-gray-300">
-            Developed by 김민석 김은경 박지선 유성민 이예진 Designed by 정예나
+            Developed by 김민석 이예진 정용준 김은경 박지선 유성민 Designed by
+            정예나
           </p>
         </div>
         <Image
