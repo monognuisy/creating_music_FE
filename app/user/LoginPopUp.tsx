@@ -56,34 +56,41 @@ const LoginPopUp: React.FC<Props> = ({
     return (
       <div>
         {/* 모달 div */}
-        <div className="bg-gray max-w-sm rounded-2xl bg-u-gray-400 p-8 ">
-          <h5 className="flex justify-center text-xl font-bold">로그인</h5>
-          <br></br>
-          <p className="text-gray-200">이메일</p>
-          <input
-            className="rounded-full border bg-u-gray-500 p-2"
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={getEmail}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <p className="text-gray-200">비밀번호</p>
-          <input
-            className="rounded-full border bg-u-gray-500 p-2"
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={getPw}
-            onChange={(e) => {
-              setPw(e.target.value);
-            }}
-          />
-          <br />
-          <br />
-          <div className="flex justify-center ">
+        <div className="bg-gray flex w-max max-w-sm flex-col gap-[20px] rounded-2xl bg-u-gray-400 p-8">
+          <h5 className="w-full text-center text-xl font-bold">로그인</h5>
+          <div className="flex flex-col gap-[8px]">
+            <label htmlFor="email" className="text-gray-200">
+              이메일
+            </label>
+            <input
+              id="email"
+              className="rounded-full border bg-u-gray-500 p-2"
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={getEmail}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
+          <div className="flex flex-col gap-[8px]">
+            <label htmlFor="password" className="text-gray-200">
+              비밀번호
+            </label>
+            <input
+              id="password"
+              className="rounded-full border bg-u-gray-500 p-2"
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={getPw}
+              onChange={(e) => {
+                setPw(e.target.value);
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-center">
             <button
               // className="rounded-full bg-white text-black px-4 py-2 center"
               // className="mx-auto rounded-full bg-white text-black px-6 py-3"
@@ -95,43 +102,29 @@ const LoginPopUp: React.FC<Props> = ({
               로그인
             </button>
           </div>
-          <div className="space-y-3">
-            <div className="flex justify-center space-x-2">
-              <button
-                className=" text-xs   text-gray-200 underline "
-                onClick={(e) => {
-                  chModal(2);
-                }}
-              >
-                회원가입{" "}
-              </button>
-              {"\u00A0"}
-              <button
-                className=" text-xs text-gray-200 underline"
-                onClick={(e) => {
-                  chModal(3);
-                }}
-              >
-                {" "}
-                아이디/비밀번호 찾기
-              </button>
-            </div>
-
-            <hr className=" mb-[0.25rem] h-0 w-full border-[2px] border-[#5A5A5A] " />
-            <div className="flex">
-              {/* <button
-                className="mx-4 rounded-full border bg-white px-4 font-bold text-black"
-                onClick={GoogleLogin}
-              >
-                google
-              </button> */}
-              <GoogleAuthLogin1></GoogleAuthLogin1>
-              <KakaoAuthLogin></KakaoAuthLogin>
-              {/* <button className="mx-4 rounded-full border bg-white px-4 font-bold text-black">
-                kakao
-              </button> */}
-              {/* <button onClick={chLogin}>test</button> */}
-            </div>
+          <div className="flex justify-center gap-[12px]">
+            <button
+              className=" text-xs text-gray-200 underline "
+              onClick={(e) => {
+                chModal(2);
+              }}
+            >
+              회원가입{" "}
+            </button>
+            <button
+              className=" text-xs text-gray-200 underline"
+              onClick={(e) => {
+                chModal(3);
+              }}
+            >
+              {" "}
+              아이디/비밀번호 찾기
+            </button>
+          </div>
+          <hr className="h-0 w-full border-[2px] border-[#5A5A5A] " />
+          <div className="gap-[4 px] flex items-center justify-center">
+            <GoogleAuthLogin1></GoogleAuthLogin1>
+            <KakaoAuthLogin></KakaoAuthLogin>
           </div>
         </div>
       </div>
