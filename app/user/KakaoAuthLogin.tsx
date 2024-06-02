@@ -19,20 +19,6 @@ const KakaoAuthLogin = () => {
     <>
       <button onClick={handleLogin}>kakao login</button>
       <br></br>
-
-      {/* <GoogleOAuthProvider
-        clientId="607016687590-ms0vlgq7l4vaod00rhmko67vabdoium9.apps.googleusercontent.com
-		&redirect_uri=http://localhost:8080/users/login/oauth2/code/google
-		&response_type=code
-		&scope=email profile"
-      >
-        <GoogleLogin
-          onSuccess={doGoogleLogin}
-          onError={not}
-          width="300px"
-          useOneTap
-        ></GoogleLogin>
-      </GoogleOAuthProvider> */}
     </>
   );
 };
