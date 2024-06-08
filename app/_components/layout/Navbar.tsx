@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Search from "./_components/search";
-import Href from "./_components/href";
-import Login from "./_components/login";
+import Search from "./Search";
+import Href from "./Href";
+import Login from "./Login";
 import Link from "next/link";
 
 export default function Navbar() {

@@ -1,4 +1,4 @@
-import { ChoiceType } from "./types";
+import { ChoiceType } from "../_types/music";
 
 export const genreChoices: ChoiceType[] = [
   { label: "retro" },

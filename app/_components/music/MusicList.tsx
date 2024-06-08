@@ -1,7 +1,7 @@
 "use client";
 
-import MusicBar from "@/app/library/_components/MusicBar";
-import type { Music } from "../types";
+import MusicBar from "@/app/_components/music/MusicBar";
+import type { Music } from "../../_types/music";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {

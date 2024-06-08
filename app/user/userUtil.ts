@@ -1,4 +1,4 @@
-import axios from "../axiosoverwrite/axiosinterceptors";
+import axios from "../_api/axiosinterceptors";
 
 const serveraddr = process.env.NEXT_PUBLIC_DOMAIN;
 

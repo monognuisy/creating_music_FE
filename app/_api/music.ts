@@ -1,5 +1,5 @@
-import axios from "@/app/axiosoverwrite/axiosinterceptors";
-import { Music } from "../../library/types";
+import axios from "@/app/_api/axiosinterceptors";
+import type { Music } from "../_types/music";
 import { AxiosError } from "axios";
 
 interface resCreateMusic {

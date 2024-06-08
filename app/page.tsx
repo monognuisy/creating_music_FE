@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import MusicCreateForm from "./music/create/_components/music_create_form";
-import ContentFrame from "./library/_components/ContentFrame";
-import MusicList from "./library/_components/MusicList";
-import { Music } from "./library/types";
+import MusicCreateForm from "./_components/music/MusicCreateForm";
+import ContentFrame from "./_components/layout/ContentFrame";
+import MusicList from "./_components/music/MusicList";
+import { Music } from "./_types/music";
 
 export default function Home() {
   const [musicList, setMusicList] = useState<Music[]>([]);
