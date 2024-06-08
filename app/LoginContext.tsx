@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface LoginContextType {
   getLoginStatus: boolean;
@@ -26,6 +32,14 @@ export const LoginProvider: React.FC<{ children: ReactNode }> = ({
 
   const chLogin = () => setLoginStatus(true);
   const chLogout = () => setLoginStatus(false);
+
+  useEffect(() => {
+    const useremail = sessionStorage.getItem("email");
+    if (useremail != null) {
+      chLogin();
+    }
+  }, []);
+
   return (
     <LoginContext.Provider value={{ getLoginStatus, chLogin, chLogout }}>
       {children}
