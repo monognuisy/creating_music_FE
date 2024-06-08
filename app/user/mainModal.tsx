@@ -17,13 +17,10 @@ const MainModalPopup: React.FC<Props> = ({
   chLogin,
   chLogout,
 }) => {
-  // const [getState, setState] = useState(true);
   const [getLogin, setLogin] = useState(true);
   const [getJoin, setJoin] = useState(false);
   const [getFind, setFind] = useState(false);
-  // const [getMsg,setMsg]=useState(false);
   const [getmsgstr, setmsgstr] = useState("");
-  //   1 Login 2 Join 3 Find
   const chModal = (InputNum: number) => {
     if (InputNum == 1) {
       setLogin(true);
@@ -64,13 +61,11 @@ const MainModalPopup: React.FC<Props> = ({
           onClick={notModal}
         >
           <div>
-            {/* <MsgPopUp getmsgstr={getmsgstr} msgModal={msgModal}></MsgPopUp> */}
             <LoginPopUp
               getLogin={getLogin}
               chModal={chModal}
               closeModal={closeModal}
               msgModal={msgModal}
-              // setLoginStatus={setLoginStatus}
               chLogin={chLogin}
               chLogout={chLogout}
             ></LoginPopUp>

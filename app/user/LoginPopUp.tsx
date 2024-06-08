@@ -18,7 +18,6 @@ const LoginPopUp: React.FC<Props> = ({
   getLogin,
   chModal,
   closeModal,
-  msgModal,
   chLogin,
   chLogout,
   // setLoginStatus,

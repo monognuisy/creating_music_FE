@@ -6,20 +6,26 @@ const axiosInstance = axios.create({
 });
 
 const REFRESH_URL = process.env.NEXT_PUBLIC_DOMAIN;
-axiosInstance.interceptors.request.use((config: any) => {
-  if (!config.headers) return config;
-  let token: string | null = null;
-  // 리프레쉬 요청이 아니라면 token을 헤더에 넣기
-  if (config.url !== REFRESH_URL) {
-    token = sessionStorage.getItem("accessToken");
-  }
-  if (token !== null) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-const getAccessToken = async (): Promise<string | void> => {
+axiosInstance.interceptors.request.use(
+  (config: any) => {
+    if (!config.headers) return config;
+    let token: string | null = null;
+    // 리프레쉬 요청이 아니라면 token을 헤더에 넣기
+    console.log("[DEBUG] axiosinterceptors.ts config.url", config.url);
+    if (config.url !== REFRESH_URL) {
+      token = sessionStorage.getItem("accessToken");
+    }
+    if (token !== null) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+// const errorHandler = async (error: string) => {};
+const getAccessToken = async (inerror: any): Promise<string | void> => {
   try {
     // refresh token 을 같이 요청 하기 access 는 헤더에 존재
     const addr = "/users/reissue";
@@ -36,34 +42,25 @@ const getAccessToken = async (): Promise<string | void> => {
       sessionStorage.setItem("nickname", resLogin.result.nickname);
       sessionStorage.setItem("profileUrl", resLogin.result.profileUrl);
     }
-    return "a";
+    // 재요청 로직
+    return axiosInstance.request(inerror.config);
+    // return "a";
   } catch (error) {
-    localStorage.removeItem("accessToken");
-    return;
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("profileUrl");
+    sessionStorage.removeItem("st");
+    return Promise.reject(inerror);
   }
 };
 
 axiosInstance.interceptors.response.use(
-  (res) => res,
-  async (err) => {
-    const {
-      config,
-      response: { status },
-    } = err;
-
-    if (status !== 401 || config.sent) {
-      return Promise.reject(err);
-    }
-
-    // 만약 만료 시간이 다 끝난 경우
-    config.sent = true;
-    const acToken = await getAccessToken();
-    // access 토큰이 없는 경우
-    if (!acToken) {
-      return Promise.reject(err);
-    }
-    // config.headers.
-    return axiosInstance(config);
+  (res) => {
+    console.log("[DEBUG]tmp axiosintercepters.ts res.data ", res.data);
+    // 기존  return axiosInstance(config); 뭐가 다른거지?
+    return res.data;
   },
+  (error) => getAccessToken({ ...error }),
 );
 export default axiosInstance;

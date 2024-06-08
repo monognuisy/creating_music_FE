@@ -1,11 +1,4 @@
-// `use client`;
-// import { GoogleLogin, GoogleOAuthProvider } from "react-oauth-google";
-// import jwtDecode from "jwt-decode";
-// import dotenv from "dotenv";
-// dotenv.config();
-// import { env } from "node:process";
-// import { doGoogleLogin } from "./userUtil";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 const REST_API_KEY = "656cda00fe6f12998b76836a2f511ca5";
 const REDIRECT_URI = "https://showpang.org/user/oauth/kakaologin";
 const KakaoAuthLogin = () => {
