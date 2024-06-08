@@ -1,26 +1,27 @@
 "use client";
 import React from "react";
 interface Props {
-  getLoginStatus:boolean
-  getProfileIMG:string
+  getLoginStatus: boolean;
+  getProfileIMG: string;
 }
 
-const UserProfile:React.FC<Props>= ({getLoginStatus,getProfileIMG}) => {
-
-  if(getLoginStatus==false){
+const UserProfile: React.FC<Props> = ({ getLoginStatus, getProfileIMG }) => {
+  if (getLoginStatus == false) {
     return null;
-  }else{
+  } else {
     return (
       <>
-      <div className="w-12 h-12 rounded-full overflow-hidden">
-      <a href='/userinfo'><img src={getProfileIMG} alt="tmp" className="w-full h-full object-cover" /></a>
-    </div>
-      {/* <div >
-        <img src="#" ></img>
-      </div> */}
+        <div className="h-12 w-12 overflow-hidden rounded-full">
+          <a href="/userinfo">
+            <img
+              src={getProfileIMG}
+              alt="tmp"
+              className="h-full w-full object-cover"
+            />
+          </a>
+        </div>
       </>
     );
-  };
-}
+  }
+};
 export default UserProfile;
-

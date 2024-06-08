@@ -6,7 +6,6 @@ import { doLogOut } from "./userUtil";
 import { Button } from "@mui/base";
 interface Props {
   getLoginStatus: boolean;
-  // eLoginStatus: (status: boolean) => void;
   chLogin: () => void;
   chLogout: () => void;
   deleteuserinfo: () => void;
