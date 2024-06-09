@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "./Menu";
-import { ChoiceType } from "../../music/create/types";
-
+// import { ChoiceType } from "../../music/create/types";
+import { ChoiceType } from "@/app/_types/music";
 interface Props {
   PopupTitle: string;
   list: ChoiceType[];

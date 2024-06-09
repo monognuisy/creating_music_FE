@@ -1,11 +1,11 @@
 "use client";
 
 import Frame from "@/app/_components/Frame";
-import ContentFrame from "./_components/ContentFrame";
+import ContentFrame from "@/app/_components/layout/ContentFrame";
 import { Button } from "@mui/base";
-import MusicList from "@/app/library/_components/MusicList";
+import MusicList from "@/app/_components/music/MusicList";
 import { useQuery } from "@tanstack/react-query";
-import axios from "../axiosoverwrite/axiosinterceptors";
+import axios from "@/app/_api/axiosinterceptors";
 
 export default function Page() {
   const { data } = useQuery({

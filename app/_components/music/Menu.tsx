@@ -1,7 +1,8 @@
 "use client";
 
 import Choice from "./Choice";
-import { ChoiceType } from "../../music/create/types";
+// import { ChoiceType } from "@/app/music/create/types";
+import { ChoiceType } from "@/app/_types/music";
 
 interface MenuProps {
   title: string;

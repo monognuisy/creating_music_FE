@@ -4,14 +4,10 @@ import { MouseEventHandler, useState } from "react";
 import MusicCover from "./MusicCover";
 import MusicTextInput from "./MusicTextInput";
 import MusicCreateSelect from "./MusicCreateSelect";
-import {
-  CreateMusicRequestBody,
-  createMusic,
-} from "@/app/music/create/createUtil";
+import { CreateMusicRequestBody, createMusic } from "@/app/_api/music";
 import { Button } from "@mui/base";
 import { useMutation } from "@tanstack/react-query";
-import { Music } from "../../library/types";
-
+import { Music } from "@/app/_types/music";
 interface MusicCreateFormProps {
   onSuccessCreate?: (music: Music) => void;
 }
