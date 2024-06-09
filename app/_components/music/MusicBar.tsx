@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import type { Music } from "@/app/library/types";
+// import type { Music } from "@/app/library/types";
+import type { Music } from "@/app/_types/music";
+// app/_types/music.ts
 import Icon from "@/app/_components/Icon";
 import { Button } from "@mui/base";
 import Link from "next/link";
