@@ -35,8 +35,10 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
       method: "POST",
       withCredentials: true,
     });
-
+    console.log(resLogin);
+    console.log(resLogin.result);
     if (resLogin.result.accessToken !== null) {
+      console.log("true resession");
       sessionStorage.setItem("accessToken", resLogin.result.accessToken);
       sessionStorage.setItem("email", resLogin.result.email);
       sessionStorage.setItem("nickname", resLogin.result.nickname);
@@ -46,6 +48,7 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
     return axiosInstance.request(inerror.config);
     // return "a";
   } catch (error) {
+    console.log("error resession");
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("nickname");
