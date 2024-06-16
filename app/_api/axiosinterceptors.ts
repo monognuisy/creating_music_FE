@@ -29,24 +29,28 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
   try {
     // refresh token 을 같이 요청 하기 access 는 헤더에 존재
     const addr = "/users/reissue";
-    const {
-      data: { resLogin },
-    } = await axiosInstance(addr, {
+    // const {
+    //   data: { resLogin },
+    // };
+    const data = await axiosInstance(addr, {
       method: "POST",
       withCredentials: true,
     });
-    console.log(resLogin);
-    console.log(resLogin.result);
-    if (resLogin.result.accessToken !== null) {
-      console.log("true resession");
-      sessionStorage.setItem("accessToken", resLogin.result.accessToken);
-      sessionStorage.setItem("email", resLogin.result.email);
-      sessionStorage.setItem("nickname", resLogin.result.nickname);
-      sessionStorage.setItem("profileUrl", resLogin.result.profileUrl);
-    }
+    console.log("data");
+    console.log(data);
+    console.log();
+    // console.log(resLogin);
+    // console.log(resLogin.result);
+    // if (resLogin.result.accessToken !== null) {
+    //   console.log("true resession");
+    //   sessionStorage.setItem("accessToken", resLogin.result.accessToken);
+    //   sessionStorage.setItem("email", resLogin.result.email);
+    //   sessionStorage.setItem("nickname", resLogin.result.nickname);
+    //   sessionStorage.setItem("profileUrl", resLogin.result.profileUrl);
+    // }
     // 재요청 로직
-    return axiosInstance.request(inerror.config);
-    // return "a";
+    // return axiosInstance.request(inerror.config);
+    return "a";
   } catch (error) {
     console.log("error resession");
     sessionStorage.removeItem("accessToken");
