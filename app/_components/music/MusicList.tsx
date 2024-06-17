@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function MusicList({ musicList }: Props) {
+    
   return (
     <div>
       <div className="flex items-center border-y-2 border-u-gray-300 px-[1.5rem] text-u-gray-300">

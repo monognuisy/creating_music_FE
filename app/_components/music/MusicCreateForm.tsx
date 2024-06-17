@@ -23,6 +23,7 @@ export default function MusicCreateForm({
     mutationKey: ["create", "music"],
     mutationFn: async (body: CreateMusicRequestBody) => {
       const res = await createMusic(body);
+
       return res;
     },
     onSuccess: (res) => {

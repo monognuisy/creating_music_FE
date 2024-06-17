@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-// import type { Music } from "@/app/library/types";
 import type { Music } from "@/app/_types/music";
-// app/_types/music.ts
 import Icon from "@/app/_components/Icon";
 import { Button } from "@mui/base";
 import Link from "next/link";
@@ -27,7 +25,7 @@ export default function MusicBar({ music, order }: Props) {
       axios.get(`/musics/${music.music_id}/streaming`, {
         withCredentials: true,
       }),
-    select: (res) => res.data.result.index_file_url,
+    select: (res) => (res as unknown as any).result.index_file_url,
   });
 
   useEffect(() => {

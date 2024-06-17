@@ -1,17 +1,17 @@
 "use client";
 
 import Frame from "@/app/_components/Frame";
-import ContentFrame from "@/app/_components/layout/ContentFrame";
 import { Button } from "@mui/base";
-import MusicList from "@/app/_components/music/MusicList";
 import { useQuery } from "@tanstack/react-query";
-import axios from "@/app/_api/axiosinterceptors";
+import axiosInstance from "../_api/axiosinterceptors";
+import ContentFrame from "../_components/layout/ContentFrame";
+import MusicList from "../_components/music/MusicList";
 
 export default function Page() {
   const { data } = useQuery({
     queryKey: ["library"],
-    queryFn: () => axios.get("/library/musics"),
-    select: (res) => res.data.result.musics,
+    queryFn: () => axiosInstance.get("/library/musics"),
+    select: (res) => (res as any).result.musics,
   });
 
   const musicList = data ?? [];

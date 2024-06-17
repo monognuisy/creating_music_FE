@@ -31,11 +31,7 @@ export const createMusic = async ({
   try {
     const res = await axios.post(`/musics/generate`, reqdata);
 
-    const ret: resCreateMusic = res.data;
-
-    if (ret.code >= 400) throw new AxiosError();
-
-    return ret;
+    return res as unknown as resCreateMusic;
   } catch (err) {
     console.error(err);
   }
