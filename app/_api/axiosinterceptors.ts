@@ -1,4 +1,5 @@
 import axios from "axios";
+import { resLogin } from "../user/userUtil";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_DOMAIN,
@@ -32,13 +33,16 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
     // const {
     //   data: { resLogin },
     // };
-    const data = await axiosInstance(addr, {
+    const data: resLogin = await axiosInstance(addr, {
       method: "POST",
       withCredentials: true,
     });
     console.log("data");
     console.log(data);
-    console.log();
+    console.log("result");
+    console.log(data.result);
+    console.log("accessToken");
+    console.log(data.result.accessToken);
     // console.log(resLogin);
     // console.log(resLogin.result);
     // if (resLogin.result.accessToken !== null) {
