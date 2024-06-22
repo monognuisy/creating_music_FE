@@ -30,19 +30,12 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
   try {
     // refresh token 을 같이 요청 하기 access 는 헤더에 존재
     const addr = "/users/reissue";
-    // const {
-    //   data: { resLogin },
-    // };
+
+    // userUtil 밑에 해당 로직 넣기
     const data: resLogin = await axiosInstance(addr, {
       method: "POST",
       withCredentials: true,
     });
-    console.log("data");
-    console.log(data);
-    console.log("result");
-    console.log(data.result);
-    console.log("accessToken");
-    console.log(data.result.accessToken);
     if (data.result.accessToken !== null) {
       console.log("true resession");
       sessionStorage.setItem("accessToken", data.result.accessToken);
@@ -50,9 +43,11 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
       sessionStorage.setItem("nickname", data.result.nickname);
       sessionStorage.setItem("profileUrl", data.result.profileUrl);
     }
+    // 여기까지
     // 재요청 로직
-    // return axiosInstance.request(inerror.config);
-    return "a";
+    console.log("inerror.config");
+    console.log(inerror.config);
+    return axiosInstance.request(inerror.config);
   } catch (error) {
     console.log("error resession");
     sessionStorage.removeItem("accessToken");
