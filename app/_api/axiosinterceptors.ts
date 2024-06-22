@@ -1,5 +1,5 @@
 import axios from "axios";
-import { resLogin } from "../user/userUtil";
+import { resLogin, doReSession } from "../user/userUtil";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_DOMAIN,
@@ -44,9 +44,7 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
       sessionStorage.setItem("profileUrl", data.result.profileUrl);
     }
     // 여기까지
-    // 재요청 로직
-    console.log("inerror.config");
-    console.log(inerror.config);
+    // 이게 실패하면 catch 가 되어 세션 삭제됨 원인 일지도 본래
     return axiosInstance.request(inerror.config);
   } catch (error) {
     console.log("error resession");
@@ -65,6 +63,7 @@ axiosInstance.interceptors.response.use(
     // 기존  return axiosInstance(config); 뭐가 다른거지?
     return res.data;
   },
-  (error) => getAccessToken({ ...error }),
+  // (error) => getAccessToken({ ...error }),
+  (error) => doReSession({ ...error }),
 );
 export default axiosInstance;
