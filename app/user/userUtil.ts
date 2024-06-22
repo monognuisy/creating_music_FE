@@ -1,3 +1,4 @@
+import axiosInstance from "../_api/axiosinterceptors";
 import axios from "../_api/axiosinterceptors";
 
 const serveraddr = process.env.NEXT_PUBLIC_DOMAIN;
@@ -231,6 +232,55 @@ const doSignUp = async (
   }
   return ret;
 };
+// const doReSession = async () => {
+//   const addr = "/users/reissue";
+
+//   // userUtil 밑에 해당 로직 넣기
+//   const data: resLogin = await axiosInstance(addr, {
+//     method: "POST",
+//     withCredentials: true,
+//   });
+//   if (data.result.accessToken !== null) {
+//     console.log("true resession");
+//     sessionStorage.setItem("accessToken", data.result.accessToken);
+//     sessionStorage.setItem("email", data.result.email);
+//     sessionStorage.setItem("nickname", data.result.nickname);
+//     sessionStorage.setItem("profileUrl", data.result.profileUrl);
+//   }
+// };
+
+// const errorHandler = async (error: string) => {};
+const doReSession = async (inerror: any): Promise<string | void> => {
+  try {
+    // refresh token 을 같이 요청 하기 access 는 헤더에 존재
+    const addr = "/users/reissue";
+
+    // userUtil 밑에 해당 로직 넣기
+    const data: resLogin = await axiosInstance(addr, {
+      method: "POST",
+      withCredentials: true,
+    });
+    if (data.result.accessToken !== null) {
+      console.log("true resession");
+      sessionStorage.setItem("accessToken", data.result.accessToken);
+      sessionStorage.setItem("email", data.result.email);
+      sessionStorage.setItem("nickname", data.result.nickname);
+      sessionStorage.setItem("profileUrl", data.result.profileUrl);
+    }
+    // 여기까지
+    // 재요청 이게 실패하면 catch 가 되어 세션 삭제됨 원인 일지도 본래
+    return axiosInstance.request(inerror.config);
+  } catch (error) {
+    console.log("error resession");
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("nickname");
+    sessionStorage.removeItem("profileUrl");
+    sessionStorage.removeItem("st");
+    return Promise.reject(inerror);
+  }
+};
+
 // test
 // 메일 인증
 const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
@@ -302,6 +352,7 @@ export {
   doLogOut,
   doGoogleLogin,
   doKakaoLogin,
+  doReSession,
 };
 
 // let ret
