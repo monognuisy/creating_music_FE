@@ -43,15 +43,13 @@ const getAccessToken = async (inerror: any): Promise<string | void> => {
     console.log(data.result);
     console.log("accessToken");
     console.log(data.result.accessToken);
-    // console.log(resLogin);
-    // console.log(resLogin.result);
-    // if (resLogin.result.accessToken !== null) {
-    //   console.log("true resession");
-    //   sessionStorage.setItem("accessToken", resLogin.result.accessToken);
-    //   sessionStorage.setItem("email", resLogin.result.email);
-    //   sessionStorage.setItem("nickname", resLogin.result.nickname);
-    //   sessionStorage.setItem("profileUrl", resLogin.result.profileUrl);
-    // }
+    if (data.result.accessToken !== null) {
+      console.log("true resession");
+      sessionStorage.setItem("accessToken", data.result.accessToken);
+      sessionStorage.setItem("email", data.result.email);
+      sessionStorage.setItem("nickname", data.result.nickname);
+      sessionStorage.setItem("profileUrl", data.result.profileUrl);
+    }
     // 재요청 로직
     // return axiosInstance.request(inerror.config);
     return "a";
