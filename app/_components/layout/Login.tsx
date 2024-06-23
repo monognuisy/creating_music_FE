@@ -6,12 +6,16 @@ import LoginBt from "@/app/user/LoginBt";
 import UserProfile from "@/app/user/UserProfile";
 import { useLogin } from "@/app/LoginContext";
 import { Button } from "@mui/base";
+import { doLogOut } from "@/app/user/userUtil";
 const Login = () => {
   var vanni = true;
   const [login, setLogin] = useState<boolean>(false);
   const onClickSignUp = () => {};
   const onClickLogin = () => setLogin(!login);
-  const onClickLogout = () => setLogin(!login);
+  const onClickLogout = () => {
+    doLogOut();
+    setLogin(!login);
+  };
   // 민석
   const { getLoginStatus, chLogin, chLogout } = useLogin();
   const [getProfileIMG, setProfileIMG] = useState(

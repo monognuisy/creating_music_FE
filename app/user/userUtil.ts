@@ -1,4 +1,3 @@
-import axiosInstance from "../_api/axiosinterceptors";
 import axios from "../_api/axiosinterceptors";
 
 const serveraddr = process.env.NEXT_PUBLIC_DOMAIN;
@@ -252,6 +251,7 @@ const doReSession = async (inerror: any): Promise<string | void> => {
     }
     // 여기까지
     // 재요청 이게 실패하면 catch 가 되어 세션 삭제됨 원인 일지도 본래
+    // 즉 서버 문제라도 세션이 밑에 때문에 날아감
     return axios.request(inerror.config);
   } catch (error) {
     console.log("error resession");
@@ -259,12 +259,10 @@ const doReSession = async (inerror: any): Promise<string | void> => {
     delSession("email");
     delSession("profileUrl");
     delSession("accessToken");
-    sessionStorage.removeItem("st");
     return Promise.reject(inerror);
   }
 };
 
-// test
 // 메일 인증
 const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
   // 이메일이 존재 할수 없는 경우 중복인 경우
@@ -324,6 +322,8 @@ const doLogOut = async () => {
   const res = await fetch(addr, {
     method: "POST",
   });
+
+  return null;
 };
 
 export {
