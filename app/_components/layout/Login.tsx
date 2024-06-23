@@ -38,7 +38,7 @@ const Login = () => {
   };
   useEffect(() => {
     setProfile();
-  }, []);
+  }, [getLoginStatus]);
   if (vanni == true) {
     return (
       <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
