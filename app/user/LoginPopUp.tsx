@@ -24,7 +24,13 @@ const LoginPopUp: React.FC<Props> = ({
 }) => {
   const [getEmail, setEmail] = useState("");
   const [getPw, setPw] = useState("");
-
+  const enterevent = async (event: any) => {
+    console.log("enter");
+    if (event.key === "Enter") {
+      console.log("enter");
+      login();
+    }
+  };
   const login = async () => {
     let ret: resLogin = await doLogin(getEmail, getPw);
     if (ret.isSuccess == true) {
@@ -71,6 +77,7 @@ const LoginPopUp: React.FC<Props> = ({
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
+              onKeyDown={enterevent}
             />
           </div>
           <div className="flex flex-col gap-[8px]">
@@ -87,6 +94,7 @@ const LoginPopUp: React.FC<Props> = ({
               onChange={(e) => {
                 setPw(e.target.value);
               }}
+              onKeyDown={enterevent}
             />
           </div>
           <div className="flex items-center justify-center">
@@ -121,7 +129,7 @@ const LoginPopUp: React.FC<Props> = ({
             </button>
           </div>
           <hr className="h-0 w-full border-[2px] border-[#5A5A5A] " />
-          <div className="gap-[4 px] flex items-center justify-center">
+          <div className="flex items-center justify-center gap-[40px]">
             <GoogleAuthLogin1></GoogleAuthLogin1>
             <KakaoAuthLogin></KakaoAuthLogin>
           </div>
