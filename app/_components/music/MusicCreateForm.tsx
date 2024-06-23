@@ -40,6 +40,10 @@ export default function MusicCreateForm({
 
   const onSubmit: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
+    var email = sessionStorage.getItem("email");
+    if (email == null) {
+      alert("로그인이 필요한 기능입니다");
+    }
     mutate({
       name: title,
       genre: selectedGenre,
