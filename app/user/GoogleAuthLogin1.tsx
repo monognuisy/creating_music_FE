@@ -19,8 +19,21 @@ const GoogleAuthLogin = () => {
   };
   return (
     <>
-      <button onClick={handleLogin}>google login</button>
-      <br></br>
+      <div className="rem rem h-12 w-12 overflow-hidden rounded-full">
+        <button type="button" onClick={handleLogin}>
+          <img
+            src={
+              "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png"
+            }
+            alt="GOOGLE"
+            className="h-full w-full object-cover"
+
+            // onClick={handleLogin}
+          />
+        </button>
+      </div>
+
+      {/* <button onClick={handleLogin}>google login</button> */}
     </>
   );
 };
