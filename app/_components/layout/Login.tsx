@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginBt from "@/app/user/LoginBt";
 import UserProfile from "@/app/user/UserProfile";
 import { useLogin } from "@/app/LoginContext";
@@ -18,9 +18,7 @@ const Login = () => {
   };
   // 민석
   const { getLoginStatus, chLogin, chLogout } = useLogin();
-  const [getProfileIMG, setProfileIMG] = useState(
-    "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png",
-  );
+  const [getProfileIMG, setProfileIMG] = useState("");
   const [getName, setName] = useState("");
   const deleteuserinfo = () => {
     setProfileIMG("");
@@ -30,6 +28,17 @@ const Login = () => {
     setProfileIMG(inImg);
     setName(inName);
   };
+  const setProfile = () => {
+    var IMG = sessionStorage.getItem("profile");
+    if (IMG == null) {
+      IMG =
+        "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png";
+    }
+    setProfileIMG(IMG);
+  };
+  useEffect(() => {
+    setProfile();
+  }, []);
   if (vanni == true) {
     return (
       <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
