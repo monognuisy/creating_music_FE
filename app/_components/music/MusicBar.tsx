@@ -18,6 +18,8 @@ export default function MusicBar({ music, order }: Props) {
   const musicRef = useRef<HTMLMediaElement | null>(null);
   const hlsRef = useRef<Hls | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [remain, setRemain] = useState(music.length);
+  const timerIdRef = useRef<NodeJS.Timer | undefined>(undefined);
 
   const { data: musicSrc } = useQuery({
     queryKey: ["musics", music.music_id, "streaming"],
@@ -37,8 +39,29 @@ export default function MusicBar({ music, order }: Props) {
     hlsRef.current.attachMedia(musicRef.current);
   }, [musicSrc]);
 
+  useEffect(() => {
+    if (!playing) {
+      clearInterval(timerIdRef.current);
+      return;
+    }
+
+    timerIdRef.current = setInterval(() => {
+      const total = musicRef.current?.duration ?? music.length;
+      const elapsed = musicRef.current?.currentTime ?? 0;
+      const remain =
+        Math.floor(total - elapsed) > 0 ? Math.floor(total - elapsed) : 0;
+      setRemain(remain);
+      if (remain <= 0) setPlaying(false);
+    }, 1000);
+
+    return () => {
+      clearInterval(timerIdRef.current);
+    };
+  }, [playing, music.length]);
+
   const handleClickPlay = () => {
     if (!musicRef.current || !hlsRef.current) return;
+
     hlsRef.current.startLoad();
     if (musicRef.current.paused) {
       musicRef.current.play();
@@ -48,6 +71,9 @@ export default function MusicBar({ music, order }: Props) {
       setPlaying(false);
     }
   };
+
+  const total = musicRef.current?.duration ?? music.length;
+  const progress = ((total - remain) / total) * 100;
 
   return (
     <div className="bg-ugray-500 flex h-[120px] w-full px-[1.5rem] py-[1.25rem]">
@@ -92,7 +118,7 @@ export default function MusicBar({ music, order }: Props) {
         </Button>
       </div>
       <div className="flex h-full w-[80px] items-center justify-center text-u-gray-200">
-        {parseSecToString(music.length)}
+        {parseSecToString(remain)}
       </div>
       <div className="flex h-full w-[280px] items-center justify-center text-u-gray-200">
         <MusicProgressBar progress={progress} />
