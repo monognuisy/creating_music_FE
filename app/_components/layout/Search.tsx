@@ -1,14 +1,13 @@
 "use client";
 
-import Icon from "@/app/_components/Icon";
 import { Input } from "@mui/base/Input";
+import Image from "next/image";
 import { KeyboardEventHandler, useState } from "react";
 
 const Search = () => {
   const [searchText, setSearchText] = useState<string>("");
   const onSearch: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === "Enter") {
-      console.log("search", searchText);
       // 검색 API 호출
     }
   };
@@ -18,7 +17,14 @@ const Search = () => {
       value={searchText}
       onChange={(e) => setSearchText(e.target.value)}
       onKeyUp={onSearch}
-      startAdornment={<Icon name="search" />}
+      startAdornment={
+        <Image
+          src={`${process.env.NEXT_PUBLIC_ICON}/${"search.svg"}`}
+          alt=""
+          width={24}
+          height={24}
+        />
+      }
       slotProps={{
         root: {
           className:

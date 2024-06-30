@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import type { Music } from "@/app/_types/music";
-import Icon from "@/app/_components/Icon";
 import { Button } from "@mui/base";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Hls from "hls.js";
 import axios from "@/app/_api/axiosinterceptors";
+import MusicProgressBar from "./MusicProgressBar";
 interface Props {
   order: number;
   music: Music;
@@ -59,7 +59,12 @@ export default function MusicBar({ music, order }: Props) {
           <Image alt="" src={music.cover_url} fill />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-u-gray-300">
-            <Icon name="music" />
+            <Image
+              src={`${process.env.NEXT_PUBLIC_ICON}/${"music.svg"}`}
+              alt=""
+              width={40}
+              height={40}
+            />
           </div>
         )}
       </Button>
@@ -75,13 +80,22 @@ export default function MusicBar({ music, order }: Props) {
       </div>
       <div className="flex h-full w-[80px] items-center justify-center">
         <audio ref={musicRef} className="hidden" />
-        <Button onClick={handleClickPlay}>{playing ? "중지" : "재생"}</Button>
+        <Button onClick={handleClickPlay}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_ICON}/${
+              playing ? "pause.svg" : "play.svg"
+            }`}
+            alt=""
+            width={24}
+            height={24}
+          />
+        </Button>
       </div>
       <div className="flex h-full w-[80px] items-center justify-center text-u-gray-200">
         {parseSecToString(music.length)}
       </div>
       <div className="flex h-full w-[280px] items-center justify-center text-u-gray-200">
-        <Icon name="equalizer2" />
+        <MusicProgressBar progress={progress} />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ interface IconProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_ICON;
-// console.log(pro)
+
 const iconMatcher = {
   airplay: `${BASE_URL}/airplay.svg`,
   download: `${BASE_URL}/download.svg`,
@@ -30,7 +30,6 @@ export type IconName = keyof typeof iconMatcher;
 
 export default function Icon({ name, ...props }: IconProps) {
   const iconUrl = iconMatcher[name];
-  // const isServer = typeof window === "undefined";
 
   return <ClientIcon iconUrl={iconUrl} {...props} />;
 }
