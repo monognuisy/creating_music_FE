@@ -26,7 +26,7 @@ const Href = () => {
         className={`
         inline-flex h-[56px] items-center justify-center text-nowrap px-[20px] font-medium
             ${
-              pathname.endsWith("/music/list")
+              pathname.endsWith("/library")
                 ? "font-semibold text-white"
                 : "text-u-gray-300"
             }
