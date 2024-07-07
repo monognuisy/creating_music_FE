@@ -30,6 +30,7 @@ axiosInstance.interceptors.response.use(
     // 기존  return axiosInstance(config); 뭐가 다른거지?
 
     // 타입 체크가 안되어서 여기가 사진 문제 원인가능성
+    // 여기에 다른 상태 코드인경우 처리로직 추가
     return res.data;
   },
   (error) => doReSession({ ...error }),

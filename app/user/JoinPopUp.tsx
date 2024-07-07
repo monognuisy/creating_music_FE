@@ -173,7 +173,7 @@ const JoinPopUp: React.FC<Props> = ({
             />
           </p>
           <br></br>
-          <div className="flex justify-center ">
+          <div className="flex items-center justify-center ">
             <button
               // className="rounded-full bg-white text-black px-4 py-2 center"
               // className="mx-auto rounded-full bg-white text-black px-6 py-3"
@@ -185,7 +185,8 @@ const JoinPopUp: React.FC<Props> = ({
               회원가입
             </button>
           </div>
-          <div className="flex justify-center space-x-2">
+          <br></br>
+          <div className="flex justify-center gap-[12px]">
             <button
               className=" text-xs   text-gray-200 underline"
               onClick={(e) => {

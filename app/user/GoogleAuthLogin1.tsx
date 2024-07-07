@@ -1,11 +1,6 @@
-// `use client`;
-// import jwtDecode from "jwt-decode";
-// import dotenv from "dotenv";
-// dotenv.config();
-// import { env } from "node:process";
-// import { doGoogleLogin } from "./userUtil";
 import React, { useState, useEffect } from "react";
-
+import logoimg from "@/tmp/google.png";
+import Image from "next/image";
 const GoogleAuthLogin = () => {
   // popup { 열릴때 WindowProxy , 닫칠때 null } 반환
   const [getPopup, setPopup] = useState<WindowProxy | null>();
@@ -19,15 +14,16 @@ const GoogleAuthLogin = () => {
   };
   return (
     <>
-      <div className="rem rem h-12 w-12 overflow-hidden rounded-full">
-        <button type="button" onClick={handleLogin}>
-          <img
-            src={
-              "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png"
-            }
+      <div className="">
+        <button
+          type="button"
+          onClick={handleLogin}
+          className="flex h-16 w-16 items-center justify-center rounded-full focus:outline-none"
+        >
+          <Image
+            src={logoimg}
             alt="GOOGLE"
-            className="h-full w-full object-cover"
-
+            className="h-full w-full rounded-full object-cover"
             // onClick={handleLogin}
           />
         </button>

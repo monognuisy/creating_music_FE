@@ -98,8 +98,10 @@ const FindIdPwPopUp: React.FC<Props> = ({ getFind, chModal, clocseModal }) => {
             </button>
           </div>
           {/* <p> */}
+          <br></br>
           <div className="flex justify-center ">
             {/* <br/> */}
+            {/* <br></br> */}
             <button
               className=" text-xs   text-gray-200 underline"
               onClick={(e) => {

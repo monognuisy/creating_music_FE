@@ -54,7 +54,7 @@ export default function MusicCreateSelect({
 
   return (
     <div>
-      <p className="text-[2rem] font-semibold text-white">Genre</p>
+      <p className="text-[1.75rem] font-semibold text-white">Genre</p>
       {selectedGenre !== "" ? (
         <button type="button" onClick={deleteGenre}>
           <Choice
@@ -66,14 +66,14 @@ export default function MusicCreateSelect({
       ) : (
         <button
           type="button"
-          className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
+          className="h-[2.75rem] px-[1.5rem] py-[0.5rem] text-[1.25rem] text-[#52525B]"
           onClick={onPopupGenre}
         >
           장르를 선택해주세요
         </button>
       )}
 
-      <p className="text-[2rem] font-semibold text-white">Mood</p>
+      <p className="text-[1.75rem]  font-semibold text-white">Mood</p>
       {selectedMood !== "" ? (
         <button type="button" onClick={deleteMood}>
           <Choice
@@ -86,14 +86,14 @@ export default function MusicCreateSelect({
         <>
           <button
             type="button"
-            className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
+            className="h-[2.75rem] px-[1.5rem] py-[0.5rem]  text-[1.25rem] text-[#52525B]"
             onClick={onPopupMood}
           >
             무드를 선택해주세요
           </button>
         </>
       )}
-      <p className="text-[2rem] font-semibold text-white">Tempo</p>
+      <p className="text-[1.75rem] font-semibold text-white">Tempo</p>
       {selectedTempo !== "" ? (
         <button type="button" onClick={deleteTempo}>
           <Choice
@@ -106,7 +106,7 @@ export default function MusicCreateSelect({
         <>
           <button
             type="button"
-            className="h-[2.75rem] text-[1.25rem] text-[#52525B]"
+            className="h-[2.75rem] px-[1.5rem] py-[0.5rem]  text-[1.25rem] text-[#52525B]"
             onClick={onPopupTempo}
           >
             템포를 선택해주세요

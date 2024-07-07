@@ -13,9 +13,9 @@ export default function Navbar() {
             <Image
               alt={`로고`}
               src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
-              width={200}
-              height={56}
-              className="aspect-[25/7] h-full"
+              width={240}
+              height={48}
+              className="h-[36px] w-[180px] flex-shrink-0 object-cover"
             />
           </Link>
           <Search />
