@@ -160,6 +160,7 @@ const JoinPopUp: React.FC<Props> = ({
               }}
             />
           </p>
+          <p className="text-gray-200">비밀번호 확인</p>
           <p>
             <input
               className="rounded-full border bg-u-gray-500 p-2"
