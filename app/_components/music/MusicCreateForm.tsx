@@ -61,10 +61,10 @@ export default function MusicCreateForm({
 
   return (
     <form name="music-create">
-      <section className="mx-auto w-full max-w-[87.5rem] rounded-[1rem] bg-u-gray-400 p-[7.5rem] pb-[5rem]">
-        <div className="flex flex-row gap-[5.5rem]">
+      <section className="mx-auto w-full max-w-[65.5rem] rounded-[1rem] bg-u-gray-400 p-[3rem]">
+        <div className="flex flex-row items-center gap-[4rem]">
           <MusicCover />
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-[16px]">
             <MusicTextInput value={title} onChange={onChangeTitle} />
             <MusicCreateSelect
               selectedGenre={selectedGenre}
@@ -76,7 +76,7 @@ export default function MusicCreateForm({
             />
           </div>
         </div>
-        <div className="mt-[3.75rem] flex justify-end gap-[1rem]">
+        <div className="mt-[2.5rem] flex justify-end gap-[1rem]">
           <Button
             type="submit"
             disabled={isLoading || !submitButtonEnabled}
@@ -84,7 +84,7 @@ export default function MusicCreateForm({
             slotProps={{
               root: {
                 className:
-                  "flex justify-center items-center bg-[#52525b] rounded-[20px] font-medium text-[1.5rem] h-[40px] w-[136px] px-[24px] disabled:text-[#27272a]",
+                  "max-content flex justify-center items-center bg-[#52525b] rounded-[20px] font-medium text-[1.25rem] h-[40px] w-[136px] px-[24px] disabled:text-[#27272a]",
               },
             }}
           >

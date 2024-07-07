@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import logoimg from "@/tmp/kakao.png";
+import Image from "next/image";
+
 const REST_API_KEY = "656cda00fe6f12998b76836a2f511ca5";
 const REDIRECT_URI = "https://showpang.org/user/oauth/kakaologin";
 const KakaoAuthLogin = () => {
@@ -10,19 +13,19 @@ const KakaoAuthLogin = () => {
   };
   return (
     <>
-      <div className="rem rem h-12 w-12 overflow-hidden rounded-full">
-        <button type="button" onClick={handleLogin}>
-          <img
-            src={
-              "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png"
-            }
+      <div className="">
+        <button
+          type="button"
+          onClick={handleLogin}
+          className="flex h-16 w-16 items-center justify-center rounded-full focus:outline-none"
+        >
+          <Image
+            src={logoimg}
             alt="KAKAO"
-            className="h-full w-full object-cover "
-            // onClick={handleLogin}
+            className="h-full w-full rounded-full object-cover"
           />
         </button>
       </div>
-      {/* <button onClick={handleLogin}>kakao login</button> */}
     </>
   );
 };

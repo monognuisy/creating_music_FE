@@ -45,3 +45,4 @@ app/user/tmp_GoogleAuthLogin2.tsx
 app/user/.UserAuthCP.tsx
 app/user/.UserPopUp.tsx
 dockerfile
+tmp
