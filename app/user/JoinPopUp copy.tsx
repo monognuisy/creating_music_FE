@@ -74,55 +74,64 @@ const JoinPopUp: React.FC<Props> = ({
     return (
       <div>
         {/* 모달 div */}
-        <div className="bg-gray flex w-max max-w-sm flex-col gap-[20px] rounded-2xl bg-u-gray-400 p-8">
-          <h5 className="w-full text-center text-xl font-bold">회원가입</h5>
-          <div className="flex flex-col gap-[8px]">
-            <label htmlFor="email" className="text-gray-200">
-              닉네임
-            </label>
-            <input
-              className="rounded-full border bg-u-gray-500 p-2 "
-              type="text"
-              placeholder="Nick name"
-              name="UserName"
-              value={getUserName}
-              onChange={(e) => {
-                setUserName(e.target.value);
-              }}
-            />
-          </div>
-          <div className="flex flex-col gap-[8px]">
-            <div className="flex justify-between">
-              <label htmlFor="password" className="text-gray-200">
-                이메일
-              </label>
-              <label className="text-right text-gray-200 ">
-                <button
-                  className=" text-xs   text-gray-200 underline "
-                  onClick={(e) => {
-                    mailCheck();
-                  }}
-                >
-                  인증 코드 요청
-                </button>
-              </label>
-            </div>
-            <input
-              className="rounded-full border bg-u-gray-500 p-2"
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={getEmail}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
+        <div className="bg-gray max-w-sm rounded-2xl bg-u-gray-400 p-8 ">
+          <h5 className="flex justify-center text-xl font-bold">회원가입</h5>
+          <br></br>
+          <p className="flex items-center">
+            <span className="mt-2 flex-grow text-gray-200">닉네임</span>
+            <span className="text-right text-gray-200">
+              {/* 좌우 로 가르는데 나중에 비번 같은지 표시하는것도 이걸로 만들어보자*/}
+              {/* 야 이게 css 에 hidden을 사용하며 숨겨지네 ㄷㄷ 지리고요 */}
+              <button
+                className="hidden text-xs text-gray-200 underline"
+                onClick={(e) => {}}
+              >
+                중복 확인
+              </button>
+            </span>
+          </p>
+          <input
+            className="rounded-full border bg-u-gray-500 p-2"
+            type="text"
+            placeholder="사용할 닉네임"
+            name="UserName"
+            value={getUserName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <p className="flex items-center">
+            <span className="flex-grow text-gray-200">이메일</span>
+            <span className="text-right text-gray-200 ">
+              <button
+                className=" text-xs   text-gray-200 underline "
+                onClick={(e) => {
+                  mailCheck();
+                }}
+              >
+                인증 코드 보내기
+              </button>
+            </span>
+          </p>
+          <input
+            className="rounded-full border bg-u-gray-500 p-2"
+            type="email"
+            placeholder="email"
+            name="email"
+            value={getEmail}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <br />
+          {/* 인증코드 전송시 표시 */}
           {getHidden === true ? (
-            <div className="flex flex-col gap-[8px]">
-              <label htmlFor="email" className="text-gray-200">
-                인증 코드
-              </label>
+            <div>
+              <p className="flex items-center">
+                <span className="flex-grow text-gray-200">인증 코드</span>
+              </p>
               <input
                 className="rounded-full border bg-u-gray-500 p-2"
                 type="password"
@@ -135,10 +144,9 @@ const JoinPopUp: React.FC<Props> = ({
               />
             </div>
           ) : null}
-          <div className="flex flex-col gap-[8px]">
-            <label htmlFor="email" className="text-gray-200">
-              비밀번호
-            </label>
+          <br />
+          <p className="text-gray-200">비밀번호</p>
+          <p>
             <input
               className="rounded-full border bg-u-gray-500 p-2"
               type="password"
@@ -149,11 +157,9 @@ const JoinPopUp: React.FC<Props> = ({
                 setPw1(e.target.value);
               }}
             />
-          </div>
-          <div className="flex flex-col gap-[8px]">
-            <label htmlFor="password" className="text-gray-200">
-              비밀번호 확인
-            </label>
+          </p>
+          <p className="mt-2 text-gray-200">비밀번호 확인</p>
+          <p>
             <input
               className=" rounded-full border bg-u-gray-500 p-2"
               type="password"
@@ -164,7 +170,8 @@ const JoinPopUp: React.FC<Props> = ({
                 setPw2(e.target.value);
               }}
             />
-          </div>
+          </p>
+          <br></br>
           <div className="mt-3 flex items-center justify-center">
             <button
               // className="rounded-full bg-white text-black px-4 py-2 center"
@@ -177,7 +184,7 @@ const JoinPopUp: React.FC<Props> = ({
               회원가입
             </button>
           </div>
-
+          <br></br>
           <div className="flex justify-center gap-[12px]">
             <button
               className=" text-xs   text-gray-200 underline"
