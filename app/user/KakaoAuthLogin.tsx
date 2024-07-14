@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import logoimg from "@/tmp/kakao.png";
 import Image from "next/image";
-
+// import logoimg from "@/tmp/kakao.png";
+// import logoimg from "@/tmp/kakaosvg.svg";
+const logoimg = "https://showpang.org/images/icons/kakao.svg";
 const REST_API_KEY = "656cda00fe6f12998b76836a2f511ca5";
 const REDIRECT_URI = "https://showpang.org/user/oauth/kakaologin";
 const KakaoAuthLogin = () => {
@@ -17,7 +18,7 @@ const KakaoAuthLogin = () => {
         <button
           type="button"
           onClick={handleLogin}
-          className="flex h-16 w-16 items-center justify-center rounded-full focus:outline-none"
+          className="flex h-11 w-11 items-center justify-center rounded-full focus:outline-none"
         >
           <Image
             src={logoimg}
