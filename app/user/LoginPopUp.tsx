@@ -97,11 +97,12 @@ const LoginPopUp: React.FC<Props> = ({
               onKeyDown={enterevent}
             />
           </div>
-          <div className="flex items-center justify-center">
+
+          <div className="mt-3 flex items-center justify-center">
             <button
               // className="rounded-full bg-white text-black px-4 py-2 center"
               // className="mx-auto rounded-full bg-white text-black px-6 py-3"
-              className="mx-4 rounded-full border bg-white px-16 font-bold text-black"
+              className="mx-4 rounded-full border bg-white px-16 py-2 font-bold text-black"
               onClick={(e) => {
                 login();
               }}
