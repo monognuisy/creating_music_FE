@@ -129,7 +129,7 @@ const LoginPopUp: React.FC<Props> = ({
             </button>
           </div>
           <hr className="h-0 w-full border-[2px] border-[#5A5A5A] " />
-          <div className="flex items-center justify-center gap-[40px]">
+          <div className="flex items-center justify-center gap-[60px]">
             <GoogleAuthLogin1></GoogleAuthLogin1>
             <KakaoAuthLogin></KakaoAuthLogin>
           </div>

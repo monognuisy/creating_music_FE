@@ -59,7 +59,7 @@ const Login = () => {
     return (
       <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
         {login ? (
-          <Link href="/mypage"></Link>
+          <Link href="/user/"></Link>
         ) : (
           <Button onClick={onClickSignUp}>회원가입</Button>
         )}

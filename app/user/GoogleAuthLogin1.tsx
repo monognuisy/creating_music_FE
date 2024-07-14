@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import logoimg from "@/tmp/google.png";
+
+// import logoimg from "@/tmp/google.png";
+// import logoimg from "@/tmp/googlesvg.svg";
+const logoimg = "https://showpang.org/images/icons/google.svg";
+
 import Image from "next/image";
 const GoogleAuthLogin = () => {
   // popup { 열릴때 WindowProxy , 닫칠때 null } 반환
@@ -18,7 +22,7 @@ const GoogleAuthLogin = () => {
         <button
           type="button"
           onClick={handleLogin}
-          className="flex h-16 w-16 items-center justify-center rounded-full focus:outline-none"
+          className="flex h-11 w-11 items-center justify-center rounded-full focus:outline-none"
         >
           <Image
             src={logoimg}
