@@ -46,6 +46,7 @@ const Login = () => {
           getLoginStatus={getLoginStatus}
           getProfileIMG={getProfileIMG}
         ></UserProfile>
+
         <LoginBt
           getLoginStatus={getLoginStatus}
           // eLoginStatus={eLoginStatus}
@@ -56,6 +57,7 @@ const Login = () => {
       </div>
     );
   } else {
+    // 이루트는 절대 가지 않는다 사용하지 않는 더미 코드
     return (
       <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
         {login ? (
