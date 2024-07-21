@@ -29,7 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".tmp/.tmpGoogleAuthLogin.tsx",
-    "app/user/.tmp_GoogleAuthLogin2.tsx"
+    "app/users/.tmp_GoogleAuthLogin2.tsx"
   ],
   "exclude": ["node_modules"]
 }

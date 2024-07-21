@@ -1,5 +1,5 @@
 import axios from "axios";
-import { doReSession } from "../user/userUtil";
+import { doReSession } from "../users/userUtil";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_DOMAIN,

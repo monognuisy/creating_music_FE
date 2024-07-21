@@ -36,13 +36,13 @@ yarn-error.log*
 next-env.d.ts
 app/layout.tsx
 app/page.tsx
-app/user/tmp
+app/users/tmp
 # app/user/
 *test*
 # 안쓰는 파일 
-app/user/tmpGoogleAuthLogin.tsx
-app/user/tmp_GoogleAuthLogin2.tsx
-app/user/.UserAuthCP.tsx
-app/user/.UserPopUp.tsx
+app/users/tmpGoogleAuthLogin.tsx
+app/users/tmp_GoogleAuthLogin2.tsx
+app/users/.UserAuthCP.tsx
+app/users/.UserPopUp.tsx
 dockerfile
 tmp
