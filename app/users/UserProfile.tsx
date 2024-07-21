@@ -12,7 +12,7 @@ const UserProfile: React.FC<Props> = ({ getLoginStatus, getProfileIMG }) => {
     return (
       <>
         <div className="h-12 w-12 overflow-hidden rounded-full">
-          <a href="/user/userinfo">
+          <a href="/users/userinfo">
             <img
               src={getProfileIMG}
               alt="tmp"

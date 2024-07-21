@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import LoginBt from "@/app/user/LoginBt";
-import UserProfile from "@/app/user/UserProfile";
+import LoginBt from "@/app/users/LoginBt";
+import UserProfile from "@/app/users/UserProfile";
 import { useLogin } from "@/app/LoginContext";
 import { Button } from "@mui/base";
-import { doLogOut } from "@/app/user/userUtil";
+import { doLogOut } from "@/app/users/userUtil";
 const Login = () => {
   var vanni = true;
   const [login, setLogin] = useState<boolean>(false);
@@ -61,7 +61,7 @@ const Login = () => {
     return (
       <div className="flex h-full flex-shrink-0 items-center gap-[1rem]">
         {login ? (
-          <Link href="/user/"></Link>
+          <Link href="/users/"></Link>
         ) : (
           <Button onClick={onClickSignUp}>회원가입</Button>
         )}

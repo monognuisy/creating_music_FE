@@ -296,7 +296,7 @@ const doIdCheck = async (inId: string): Promise<resIdCheck> => {
     msg: "net error",
     state: false,
   };
-  const addr = serveraddr + "/user/idcheck";
+  const addr = serveraddr + "/users/idcheck";
   const jsondata = {
     id: inId,
   };
@@ -311,7 +311,7 @@ const doIdCheck = async (inId: string): Promise<resIdCheck> => {
 };
 
 const doLogOut = async () => {
-  const addr = serveraddr + "/user/logout";
+  const addr = serveraddr + "/users/logout";
   let ret;
   delSession("nickname");
   delSession("email");
