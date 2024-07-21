@@ -33,6 +33,10 @@ axiosInstance.interceptors.response.use(
     // 여기에 다른 상태 코드인경우 처리로직 추가
     return res.data;
   },
-  (error) => doReSession({ ...error }),
+  (error) => {
+    // 엑세스 토큰이 있는 경우에만 세션 재요청
+    let token = sessionStorage.getItem("accessToken");
+    if (token) doReSession({ ...error });
+  },
 );
 export default axiosInstance;
