@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 // import logoimg from "@/tmp/google.png";
-import logoimg from "@/tmp/googlesvg.svg";
+// 로고 활성화 여기
+// import logoimg from "@/tmp/googebt.png";
 // const logoimg = "https://showpang.org/images/icons/google.svg";
 
 import Image from "next/image";
@@ -22,13 +23,17 @@ const GoogleAuthLogin = () => {
         <button
           type="button"
           onClick={handleLogin}
-          className="flex h-11 w-11 items-center justify-center rounded-full focus:outline-none"
+          className="flex  items-center justify-center rounded-full focus:outline-none"
         >
+          google
           <Image
-            src={logoimg}
-            alt="GOOGLE"
-            className="h-full w-full rounded-full object-cover"
-            // onClick={handleLogin}
+            alt={`로고`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE}/showpang_logo.png`}
+            // 로고 활성화 여기
+            // src={logoimg}
+            width={240}
+            height={48}
+            className="h-[36px] w-[180px] flex-shrink-0 object-cover"
           />
         </button>
       </div>

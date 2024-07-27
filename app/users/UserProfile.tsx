@@ -6,7 +6,7 @@ interface Props {
 }
 
 const UserProfile: React.FC<Props> = ({ getLoginStatus, getProfileIMG }) => {
-  if (getLoginStatus != false) {
+  if (getLoginStatus == false) {
     return null;
   } else {
     return (

@@ -276,7 +276,37 @@ const doMailCheck = async (inMail: string): Promise<resMailCheck> => {
     email: inMail,
   };
   let res;
-  const addr = serveraddr + "/users/email-check";
+  const addr = serveraddr + "/users/email/code-request";
+  res = await fetch(addr, {
+    method: "POST",
+    body: JSON.stringify(jsondata),
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin":
+        "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
+    },
+  });
+  ret = await res.json();
+  return ret;
+};
+
+const doCodeCheck = async (
+  inMail: string,
+  inCode: string,
+): Promise<resMailCheck> => {
+  // 이메일이 존재 할수 없는 경우 중복인 경우
+  let ret: resMailCheck = {
+    message: "",
+    code: 0,
+    isSuccess: false,
+    result: "요청 실패",
+  };
+  let jsondata = {
+    email: inMail,
+    code: inCode,
+  };
+  let res;
+  const addr = serveraddr + "/users/email/code-check";
   res = await fetch(addr, {
     method: "POST",
     body: JSON.stringify(jsondata),
@@ -336,21 +366,9 @@ export {
   doGoogleLogin,
   doKakaoLogin,
   doReSession,
+  doCodeCheck,
 };
 
-// let ret
-// const addr=""
-// await fetch(addr,{
-//     method:"",
-// })
-// .then((res:Response)=>{
-//     console.log("");
-// })
-// .catch((err)=>{
-//     ret=false
-//     console.log(err);
-// })
-// return ret
 export const users = async () => {
   var addr = serveraddr + "/users";
   const res = await axios.get(addr, {});
