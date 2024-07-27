@@ -1,6 +1,6 @@
 "use client";
 import GoogleAuthLogin1 from "./GoogleAuthLogin1";
-import KakaoAuthLogin from "./KakaoAuthLogin";
+import KakaoAuthLogin from "./KakaoAuthLogin1";
 import { doLogin, resLogin } from "./userUtil";
 import React, { useState } from "react";
 
@@ -114,7 +114,7 @@ const LoginPopUp: React.FC<Props> = ({
             <button
               className=" text-xs text-gray-200 underline "
               onClick={(e) => {
-                chModal(2);
+                chModal(4);
               }}
             >
               회원가입{" "}

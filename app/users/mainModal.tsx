@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import LoginPopUp from "./LoginPopUp";
 import JoinPopUp from "./JoinPopUp";
 import FindIdPwPopUp from "./FindIdPwPopUp";
+import SelectJoinPopUp from "./SelectJoinPopUp";
 
 interface Props {
   getModal: boolean;
@@ -18,6 +19,7 @@ const MainModalPopup: React.FC<Props> = ({
   chLogout,
 }) => {
   const [getLogin, setLogin] = useState(true);
+  const [getSelectJoin, setSelectJoin] = useState(false);
   const [getJoin, setJoin] = useState(false);
   const [getFind, setFind] = useState(false);
   const [getmsgstr, setmsgstr] = useState("");
@@ -26,14 +28,22 @@ const MainModalPopup: React.FC<Props> = ({
       setLogin(true);
       setJoin(false);
       setFind(false);
+      setSelectJoin(false);
     } else if (InputNum == 2) {
       setJoin(true);
       setLogin(false);
       setFind(false);
+      setSelectJoin(false);
     } else if (InputNum == 3) {
       setFind(true);
       setLogin(false);
       setJoin(false);
+      setSelectJoin(false);
+    } else if (InputNum == 4) {
+      setFind(false);
+      setLogin(false);
+      setJoin(false);
+      setSelectJoin(true);
     }
   };
   const notModal = (e: React.MouseEvent) => {
@@ -46,6 +56,7 @@ const MainModalPopup: React.FC<Props> = ({
     setLogin(true);
     setJoin(false);
     setFind(false);
+    setSelectJoin(false);
   };
   const msgModal = (INmsg: string) => {
     setmsgstr(INmsg);
@@ -69,6 +80,13 @@ const MainModalPopup: React.FC<Props> = ({
               chLogin={chLogin}
               chLogout={chLogout}
             ></LoginPopUp>
+            <SelectJoinPopUp
+              getSelectJoin={getSelectJoin}
+              chModal={chModal}
+              closeModal={closeModal}
+              msgModal={msgModal}
+            ></SelectJoinPopUp>
+
             <JoinPopUp
               getJoin={getJoin}
               chModal={chModal}

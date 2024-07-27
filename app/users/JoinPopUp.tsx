@@ -1,5 +1,5 @@
 "use client";
-import { doMailCheck, doSignUp } from "./userUtil";
+import { doCodeCheck, doMailCheck, doSignUp } from "./userUtil";
 import React, { useState } from "react";
 import { resMailCheck, resSignUp } from "./userUtil";
 interface Props {
@@ -54,18 +54,30 @@ const JoinPopUp: React.FC<Props> = ({
   const mailCheck = async () => {
     if (getEmail === null) {
       alert("메일을 입력 해주세요");
+    } else {
+      let ret: resMailCheck = await doMailCheck(getEmail);
+      if (ret.code === 200) {
+        // 전송 성공 했습니다
+        setHidden(true);
+        alert(ret.message);
+      } else if (ret.code === 400) {
+        // 중복
+        alert(ret.message);
+      }
     }
     // test 용 코드 주석제거 필요
-    let ret: resMailCheck = await doMailCheck(getEmail);
-    // alert("메일을 확인 해주세요");
-    // let ret = { code: 100, msg: "test" };
-    if (ret.code === 200) {
-      // 전송 성공 했습니다
-      setHidden(true);
-      alert(ret.message);
-    } else if (ret.code === 400) {
-      // 중복
-      alert(ret.message);
+  };
+  const codeCheck = async () => {
+    if (getCode === null) {
+      alert("코드를 입력 해주세요");
+    } else {
+      let ret = await doCodeCheck(getEmail, getCode);
+      if (ret.isSuccess == true) {
+        alert("인증 성공");
+        setHidden(false);
+      } else {
+        alert("인증 실패");
+      }
     }
   };
   if (getJoin == false) {
@@ -100,7 +112,7 @@ const JoinPopUp: React.FC<Props> = ({
                 <button
                   className=" text-xs   text-gray-200 underline "
                   onClick={(e) => {
-                    mailCheck();
+                    codeCheck();
                   }}
                 >
                   인증 코드 요청
@@ -120,9 +132,21 @@ const JoinPopUp: React.FC<Props> = ({
           </div>
           {getHidden === true ? (
             <div className="flex flex-col gap-[8px]">
-              <label htmlFor="email" className="text-gray-200">
-                인증 코드
-              </label>
+              <div className="flex justify-between">
+                <label htmlFor="password" className="text-gray-200">
+                  인증코드
+                </label>
+                <label className="text-right text-gray-200 ">
+                  <button
+                    className=" text-xs   text-gray-200 underline "
+                    onClick={(e) => {
+                      mailCheck();
+                    }}
+                  >
+                    인증 코드 확인
+                  </button>
+                </label>
+              </div>
               <input
                 className="rounded-full border bg-u-gray-500 p-2"
                 type="password"
@@ -182,10 +206,10 @@ const JoinPopUp: React.FC<Props> = ({
             <button
               className=" text-xs   text-gray-200 underline"
               onClick={(e) => {
-                chModal(1);
+                chModal(4);
               }}
             >
-              로그인하기{" "}
+              회원가입 선택{" "}
             </button>
             <button
               className=" text-xs text-gray-200 underline"
