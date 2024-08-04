@@ -112,7 +112,8 @@ const JoinPopUp: React.FC<Props> = ({
                 <button
                   className=" text-xs   text-gray-200 underline "
                   onClick={(e) => {
-                    codeCheck();
+                    
+                    mailCheck();
                   }}
                 >
                   인증 코드 요청
@@ -140,7 +141,7 @@ const JoinPopUp: React.FC<Props> = ({
                   <button
                     className=" text-xs   text-gray-200 underline "
                     onClick={(e) => {
-                      mailCheck();
+                      codeCheck();
                     }}
                   >
                     인증 코드 확인
