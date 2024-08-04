@@ -51,6 +51,7 @@ const JoinPopUp: React.FC<Props> = ({
       // setTimeout(()=>{msgModal('');},20000);
     }
   };
+  
   const mailCheck = async () => {
     if (getEmail === null) {
       alert("메일을 입력 해주세요");
