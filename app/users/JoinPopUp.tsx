@@ -208,10 +208,10 @@ const JoinPopUp: React.FC<Props> = ({
             <button
               className=" text-xs   text-gray-200 underline"
               onClick={(e) => {
-                chModal(4);
+                chModal(1);
               }}
             >
-              회원가입 선택{" "}
+              로그인 하기{" "}
             </button>
             <button
               className=" text-xs text-gray-200 underline"

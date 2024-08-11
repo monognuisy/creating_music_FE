@@ -114,7 +114,7 @@ const LoginPopUp: React.FC<Props> = ({
             <button
               className=" text-xs text-gray-200 underline "
               onClick={(e) => {
-                chModal(4);
+                chModal(2);
               }}
             >
               회원가입{" "}
