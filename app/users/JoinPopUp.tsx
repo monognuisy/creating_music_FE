@@ -23,7 +23,7 @@ const JoinPopUp: React.FC<Props> = ({
   const [getCode, setCode] = useState("");
   const [getPw1, setPw1] = useState("");
   const [getPw2, setPw2] = useState("");
-  const [getHidden, setHidden] = useState(true);
+  const [getHidden, setHidden] = useState(false);
 
   const sign = async () => {
     let ret: resSignUp;
