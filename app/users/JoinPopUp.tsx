@@ -23,7 +23,7 @@ const JoinPopUp: React.FC<Props> = ({
   const [getCode, setCode] = useState("");
   const [getPw1, setPw1] = useState("");
   const [getPw2, setPw2] = useState("");
-  const [getHidden, setHidden] = useState(false);
+  const [getHidden, setHidden] = useState(true);
 
   const sign = async () => {
     let ret: resSignUp;
@@ -142,7 +142,7 @@ const JoinPopUp: React.FC<Props> = ({
             />
             <button
               // className="border-0 bg-blue-500 rounded-r-full px-4 py-1.5 text-white focus:outline-none"
-              className="border-0 bg-u-gray-300 rounded-r-full px-3 py-1 font-bold text-white focus:outline-none"
+              className="border-0 bg-u-gray-300 rounded-r-full px-3 py-1.5 font-bold text-white focus:outline-none"
               onClick={codeCheck}
             >
               전송
