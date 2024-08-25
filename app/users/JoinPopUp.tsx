@@ -142,7 +142,7 @@ const JoinPopUp: React.FC<Props> = ({
             />
             <button
               // className="border-0 bg-blue-500 rounded-r-full px-4 py-1.5 text-white focus:outline-none"
-              className="border-0 bg-u-gray-300 rounded-r-full px-3 py-1 font-bold text-white focus:outline-none"
+              className="border-0 bg-u-gray-300 rounded-r-full px-3 py-1.5 font-bold text-white focus:outline-none"
               onClick={codeCheck}
             >
               전송
