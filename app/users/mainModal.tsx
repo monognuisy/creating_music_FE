@@ -75,7 +75,6 @@ const MainModalPopup: React.FC<Props> = ({
               getJoin={getJoin}
               chModal={chModal}
               closeModal={closeModal}
-              
             ></JoinPopUp>
             <FindPwPopUp
               getFind={getFind}

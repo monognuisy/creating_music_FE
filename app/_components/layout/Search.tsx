@@ -13,6 +13,7 @@ const Search = () => {
   };
   return (
     <Input
+      // className="hidden"
       type="text"
       value={searchText}
       onChange={(e) => setSearchText(e.target.value)}
