@@ -306,7 +306,7 @@ export const doSendEmail=async (inMail:string ):Promise<resDefult>=>{
   ret = await res.json();
   return ret;
 }
-export const doResetPasswd=async (inToken:string, inNewPasswd:string):Promise<resDefult>=>{
+export const doResetPasswd=async (inToken:string, inEmail:string, inNewPasswd:string):Promise<resDefult>=>{
   const addr=serveraddr+"/users/reset-password";
   let ret:resDefult={
     message: "",
@@ -316,6 +316,7 @@ export const doResetPasswd=async (inToken:string, inNewPasswd:string):Promise<re
   };
   let jsondata={
     token:inToken,
+    email:inEmail,
     newPassword:inNewPasswd
   }
   let res = await fetch(addr, {
@@ -345,9 +346,8 @@ export const doCodeCheck = async (
     email: inMail,
     code: inCode,
   };
-  let res;
   const addr = serveraddr + "/users/email/code-check";
-  res = await fetch(addr, {
+  let res = await fetch(addr, {
     method: "POST",
     body: JSON.stringify(jsondata),
     headers: {
@@ -359,10 +359,29 @@ export const doCodeCheck = async (
   ret = await res.json();
   return ret;
 };
-
+// account delete
+export const deleteUser = async():Promise<resDefult>=>{
+  let ret: resDefult= {
+    message: "",
+    code: 0,
+    isSuccess: false,
+    result: "요청 실패",
+  };
+  const addr = serveraddr + "/users/email/code-check";
+  let res = await fetch(addr, {
+    method: "POST",
+    // body: JSON.stringify(jsondata),
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin":
+        "http://192.168.0.15:*; http://127.0.0.1; https://showpang.org",
+    },
+  });
+  ret=await res.json();
+  return ret;
+}
 export const doIdCheck = async (inId: string): Promise<resIdCheck> => {
-  let ret: resIdCheck;
-  ret = {
+  let ret: resIdCheck = {
     msg: "net error",
     state: false,
   };
