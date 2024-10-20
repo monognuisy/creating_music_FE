@@ -17,6 +17,12 @@ const nextConfig = {
         hostname: "showpang.org",
         pathname: "/images/**",
       },
+      {
+        // 랜덤 이미지용 url
+        protocol: "https",
+        hostname: "picsum.photos",
+        pathname: "/*"
+      }
     ],
   },
   output: "standalone",
