@@ -320,7 +320,7 @@ export const doResetPasswd=async (inToken:string, inEmail:string, inNewPasswd:st
     newPassword:inNewPasswd
   }
   let res = await fetch(addr, {
-    method: "POST",
+    method: "PATCH",
     body: JSON.stringify(jsondata),
     headers: {
       "Content-Type": "application/json",
